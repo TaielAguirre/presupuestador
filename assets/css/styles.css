@@ -1,0 +1,211 @@
+/* Estilos generales */
+body {
+    background-color: #f8f9fa;
+}
+
+/* Estilos para las tarjetas */
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 1rem;
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* Estilos para la grilla AG-Grid */
+.ag-theme-alpine {
+    --ag-header-height: 40px;
+    --ag-row-height: 35px;
+    --ag-header-foreground-color: #495057;
+    --ag-font-size: 14px;
+}
+
+/* Estilos para los badges */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.75em;
+}
+
+/* Estilos para las estadísticas */
+.card .card-body h3 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.card .card-body h6 {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Estilos para las cotizaciones */
+#dolarDivisa, #dolarBillete {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+}
+
+/* Estilos para los botones */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Estilos para los iconos */
+.bi {
+    margin-right: 0.25rem;
+}
+
+/* Estilos para los formularios */
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Estilos para las tablas */
+.table th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+/* Estilos para los mensajes de alerta */
+.alert {
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+}
+
+/* Estilos para los tooltips */
+.tooltip {
+    font-size: 0.875rem;
+}
+
+/* Estilos para los modales */
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Estilos para los spinners */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+    border-width: 0.2em;
+}
+
+/* Estilos para los enlaces */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para los inputs de búsqueda */
+.search-input {
+    max-width: 300px;
+}
+
+/* Estilos para los contenedores de scroll */
+.scroll-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Estilos para las barras de navegación */
+.navbar {
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem;
+}
+
+/* Estilos para los campos requeridos */
+.required::after {
+    content: "*";
+    color: #dc3545;
+    margin-left: 0.25rem;
+}
+
+/* Estilos para los estados de validación */
+.is-valid {
+    border-color: #28a745;
+}
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+/* Estilos para los mensajes de feedback */
+.valid-feedback,
+.invalid-feedback {
+    font-size: 80%;
+    margin-top: 0.25rem;
+}
+
+/* Estilos para los elementos deshabilitados */
+.disabled {
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+/* Estilos para los elementos de carga */
+.loading {
+    position: relative;
+    min-height: 200px;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2rem;
+    height: 2rem;
+    border: 0.25em solid #dee2e6;
+    border-right-color: #007bff;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+}
+
+/* Estilos para los tooltips personalizados */
+[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem;
+    background-color: #000;
+    color: #fff;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+[data-tooltip]:hover::before {
+    opacity: 0.9;
+    visibility: visible;
+} 

@@ -1,0 +1,60 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+/tmp/
+/temp/
+
+# Database
+*.sqlite
+*.sqlite3
+
+# Compiled output
+/dist/
+/build/
+/public/hot/
+/public/storage/
+
+# Cache
+.phpunit.result.cache
+.php_cs.cache
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.bak
+*.swp
+*~
+
+# Uploaded files
+/uploads/
+/storage/
+
+# Configuration
+config.php
+!config/database.php 
