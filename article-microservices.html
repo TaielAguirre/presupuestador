@@ -1,0 +1,297 @@
+<article class="full-article">
+    <div class="article-cover">
+        <img src="images/readings/microservices.jpg" alt="Arquitectura de Microservicios" class="cover-image">
+        <div class="cover-overlay">
+            <div class="cover-content">
+                <h2>Arquitectura de Microservicios con Node.js</h2>
+                <div class="article-meta">
+                    <span><i class="far fa-clock"></i> 30 min lectura</span>
+                    <span><i class="fas fa-book-reader"></i> Nivel: Intermedio</span>
+                    <span><i class="fas fa-tag"></i> Desarrollo</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tecnologías utilizadas -->
+    <div class="tech-icons">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+    </div>
+
+    <section class="article-section">
+        <h3>Introducción a los Microservicios</h3>
+        <p>
+            La arquitectura de microservicios representa un enfoque moderno para construir aplicaciones 
+            como un conjunto de servicios pequeños, autónomos y altamente mantenibles. En esta guía, 
+            exploraremos cómo implementar una arquitectura de microservicios robusta utilizando Node.js.
+        </p>
+    </section>
+
+    <section class="article-section">
+        <h3>1. Fundamentos de la Arquitectura</h3>
+        <p>
+            Los principios clave de una arquitectura de microservicios incluyen:
+        </p>
+        <ul class="article-list">
+            <li>Servicios independientes y autónomos</li>
+            <li>Despliegue independiente</li>
+            <li>Bases de datos descentralizadas</li>
+            <li>Comunicación asíncrona</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-javascript">
+// Estructura básica de un microservicio
+const express = require('express');
+const mongoose = require('mongoose');
+const { EventEmitter } = require('events');
+
+class MicroService extends EventEmitter {
+    constructor(config) {
+        super();
+        this.app = express();
+        this.name = config.name;
+        this.port = config.port;
+        this.dbUri = config.dbUri;
+        
+        this.initializeMiddleware();
+        this.initializeRoutes();
+        this.initializeDatabase();
+    }
+    
+    async initializeDatabase() {
+        try {
+            await mongoose.connect(this.dbUri, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true
+            });
+            console.log(`[${this.name}] Connected to database`);
+        } catch (error) {
+            console.error(`[${this.name}] Database connection error:`, error);
+        }
+    }
+    
+    start() {
+        this.app.listen(this.port, () => {
+            console.log(`[${this.name}] Service running on port ${this.port}`);
+        });
+    }
+}</code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>2. Diseño de Servicios</h3>
+        <p>
+            El diseño efectivo de microservicios requiere considerar:
+        </p>
+        <ul class="article-list">
+            <li>Límites del contexto del dominio</li>
+            <li>Patrones de comunicación entre servicios</li>
+            <li>Gestión de datos distribuidos</li>
+            <li>Manejo de fallos</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-javascript">
+// Ejemplo de un servicio de usuarios
+class UserService extends MicroService {
+    initializeRoutes() {
+        this.app.post('/users', this.createUser);
+        this.app.get('/users/:id', this.getUser);
+        this.app.put('/users/:id', this.updateUser);
+        this.app.delete('/users/:id', this.deleteUser);
+    }
+    
+    async createUser(req, res) {
+        try {
+            const user = await User.create(req.body);
+            // Emitir evento para otros servicios
+            this.emit('user.created', user);
+            res.status(201).json(user);
+        } catch (error) {
+            this.handleError(error, res);
+        }
+    }
+    
+    handleError(error, res) {
+        // Manejo centralizado de errores
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({
+                error: 'Validation Error',
+                details: error.errors
+            });
+        }
+        
+        res.status(500).json({
+            error: 'Internal Server Error'
+        });
+    }
+}</code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>3. Comunicación entre Servicios</h3>
+        <div class="section-image">
+            <img src="images/readings/microservices-communication.jpg" alt="Comunicación entre Servicios" class="section-image">
+        </div>
+        <p>
+            Implementación de patrones de comunicación efectivos:
+        </p>
+        <ul class="article-list">
+            <li>API Gateway</li>
+            <li>Event-driven architecture</li>
+            <li>Message queues</li>
+            <li>Service discovery</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-javascript">
+// Implementación de un API Gateway
+const gateway = express();
+const proxy = require('express-http-proxy');
+
+// Configuración de rutas
+gateway.use('/users', proxy('http://user-service:3001'));
+gateway.use('/orders', proxy('http://order-service:3002'));
+gateway.use('/payments', proxy('http://payment-service:3003'));
+
+// Implementación de Circuit Breaker
+const CircuitBreaker = require('opossum');
+
+const breaker = new CircuitBreaker(async function(serviceUrl) {
+    const response = await fetch(serviceUrl);
+    return response.json();
+}, {
+    timeout: 3000,
+    errorThresholdPercentage: 50,
+    resetTimeout: 30000
+});
+
+breaker.fallback(() => ({ error: 'Service Unavailable' }));</code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>4. Gestión de Datos</h3>
+        <div class="section-image">
+            <img src="images/readings/microservices-data.jpg" alt="Gestión de Datos en Microservicios" class="section-image">
+        </div>
+        <p>
+            Estrategias para manejar datos en una arquitectura distribuida:
+        </p>
+        <ul class="article-list">
+            <li>Base de datos por servicio</li>
+            <li>Consistencia eventual</li>
+            <li>CQRS y Event Sourcing</li>
+            <li>Transacciones distribuidas</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-javascript">
+// Implementación de CQRS
+class OrderService {
+    async createOrder(orderData) {
+        // Command - Crear orden
+        const order = await Order.create(orderData);
+        
+        // Evento para actualizar la vista
+        await this.eventBus.publish('order.created', order);
+        
+        return order;
+    }
+}
+
+class OrderQueryService {
+    constructor() {
+        this.eventBus.subscribe('order.created', this.updateReadModel);
+    }
+    
+    async updateReadModel(orderEvent) {
+        // Actualizar vista materializada
+        await OrderView.create({
+            orderId: orderEvent.id,
+            status: orderEvent.status,
+            summary: this.generateOrderSummary(orderEvent)
+        });
+    }
+}</code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>5. Despliegue y Operaciones</h3>
+        <div class="section-image">
+            <img src="images/readings/microservices-deployment.jpg" alt="Despliegue de Microservicios" class="section-image">
+        </div>
+        <p>
+            Aspectos clave para el despliegue y operación de microservicios:
+        </p>
+        <ul class="article-list">
+            <li>Containerización con Docker</li>
+            <li>Orquestación con Kubernetes</li>
+            <li>Monitoreo y logging distribuido</li>
+            <li>CI/CD para microservicios</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-yaml">
+# docker-compose.yml
+version: '3'
+services:
+  api-gateway:
+    build: ./gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - user-service
+      - order-service
+      
+  user-service:
+    build: ./user-service
+    environment:
+      - MONGODB_URI=mongodb://user-db:27017/users
+    depends_on:
+      - user-db
+      
+  order-service:
+    build: ./order-service
+    environment:
+      - MONGODB_URI=mongodb://order-db:27017/orders
+    depends_on:
+      - order-db
+      
+  user-db:
+    image: mongo:latest
+    volumes:
+      - user-data:/data/db
+      
+  order-db:
+    image: mongo:latest
+    volumes:
+      - order-data:/data/db
+
+volumes:
+  user-data:
+  order-data:</code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>Conclusiones y Mejores Prácticas</h3>
+        <p>
+            Para implementar microservicios exitosamente:
+        </p>
+        <ul class="article-list">
+            <li>Diseñar servicios cohesivos y desacoplados</li>
+            <li>Implementar patrones de resiliencia</li>
+            <li>Automatizar el despliegue y monitoreo</li>
+            <li>Mantener documentación actualizada</li>
+        </ul>
+        <p>
+            Recuerda que los microservicios no son una solución universal. Evalúa 
+            cuidadosamente si esta arquitectura es adecuada para tu caso de uso 
+            específico.
+        </p>
+    </section>
+</article> 

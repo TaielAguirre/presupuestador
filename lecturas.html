@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Técnica - NetLoom</title>
+    <meta name="description" content="Recursos técnicos y artículos sobre desarrollo, ciberseguridad y tecnología">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+    <style>
+        /* Estilos específicos para la biblioteca de lecturas */
+        .library-header {
+            background: var(--gradient-primary);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .library-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .library-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .library-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: var(--primary-light);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta i {
+            color: var(--primary);
+        }
+
+        .article-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: gap 0.3s ease;
+        }
+
+        .article-link:hover {
+            gap: 0.8rem;
+        }
+
+        /* Estilos para el modal de artículos */
+        .article-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .article-content h2 {
+            color: var(--text-primary);
+            margin: 2rem 0 1rem;
+        }
+
+        .article-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .article-content pre {
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .library-header {
+                padding: 3rem 1rem;
+            }
+
+            .library-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .articles-grid {
+                padding: 1rem;
+            }
+
+            .modal-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">
+            <img src="images/netloom-logo.png" alt="NetLoom Logo">
+            <h1>NetLoom</h1>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#sobre-mi">Sobre Mí</a>
+            <a href="index.html#proyectos">Proyectos</a>
+            <a href="index.html#contacto" class="nav-cta">Contacto</a>
+        </div>
+    </nav>
+
+    <div class="library-header">
+        <h1>Biblioteca Técnica</h1>
+        <p>Explora artículos técnicos, guías y recursos sobre desarrollo, ciberseguridad y tecnología</p>
+    </div>
+
+    <div class="container">
+        <div class="library-filters">
+            <button class="filter-btn active" data-category="todos">Todos</button>
+            <button class="filter-btn" data-category="ciberseguridad">Ciberseguridad</button>
+            <button class="filter-btn" data-category="desarrollo">Desarrollo</button>
+            <button class="filter-btn" data-category="redes">Redes</button>
+            <button class="filter-btn" data-category="cloud">Cloud</button>
+            <button class="filter-btn" data-category="automatizacion">Automatización</button>
+            <button class="filter-btn" data-category="proyectos">Proyectos</button>
+            <button class="filter-btn" data-category="casos-exito">Casos de Éxito</button>
+        </div>
+
+        <div class="articles-grid">
+            <!-- Artículo: Desarrollo Web Moderno -->
+            <article class="article-card" data-category="desarrollo">
+                <img src="images/articles/modern-web.jpg" alt="Desarrollo Web Moderno" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Desarrollo</span>
+                    <h2 class="article-title">Desarrollo Web Moderno: JavaScript y HTML Avanzado</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 25 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Explora las últimas tendencias en desarrollo web, incluyendo APIs modernas, optimización y mejores prácticas.</p>
+                    <a href="#" class="article-link" onclick="showArticle('modern-web')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artículo: Cloud Security -->
+            <article class="article-card" data-category="cloud">
+                <img src="images/articles/cloud-security.jpg" alt="Seguridad en la Nube" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Cloud</span>
+                    <h2 class="article-title">Seguridad en la Nube: Mejores Prácticas y Configuraciones</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 30 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Guía completa sobre seguridad en la nube, incluyendo AWS y Azure, con ejemplos prácticos de configuración.</p>
+                    <a href="#" class="article-link" onclick="showArticle('cloud-security')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artículo: Zero Trust -->
+            <article class="article-card" data-category="ciberseguridad">
+                <img src="images/articles/zero-trust.jpg" alt="Zero Trust Security" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Ciberseguridad</span>
+                    <h2 class="article-title">Zero Trust: El Nuevo Paradigma de Seguridad</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 15 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Explora el modelo de seguridad Zero Trust, sus principios fundamentales y cómo implementarlo en tu organización.</p>
+                    <a href="#" class="article-link" onclick="showArticle('zero-trust')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artículo: Análisis Forense -->
+            <article class="article-card" data-category="ciberseguridad">
+                <img src="images/articles/forensics.jpg" alt="Análisis Forense Digital" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Ciberseguridad</span>
+                    <h2 class="article-title">Análisis Forense Digital: Metodologías y Herramientas</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 20 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Guía completa sobre análisis forense digital, técnicas de investigación y herramientas esenciales.</p>
+                    <a href="#" class="article-link" onclick="showArticle('forensics')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artículo: Redes Empresariales -->
+            <article class="article-card" data-category="redes">
+                <img src="images/articles/enterprise-networks.jpg" alt="Redes Empresariales" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Redes</span>
+                    <h2 class="article-title">Diseño de Redes Empresariales Seguras</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 25 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Mejores prácticas para el diseño e implementación de redes empresariales seguras y escalables.</p>
+                    <a href="#" class="article-link" onclick="showArticle('enterprise-networks')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artículo: Automatización Industrial con Python -->
+            <article class="article-card" data-category="automatizacion">
+                <img src="images/articles/industrial-automation.jpg" alt="Automatización Industrial" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Automatización</span>
+                    <h2 class="article-title">Automatización Industrial con Python: Guía Práctica</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 20 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Guía completa sobre automatización industrial usando Python, incluyendo integración de sensores y control de procesos.</p>
+                    <a href="#" class="article-link" onclick="showArticle('industrial-automation')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artículo: Sistema de Gestión de Pedidos -->
+            <article class="article-card" data-category="proyectos">
+                <img src="images/articles/order-system.jpg" alt="Sistema de Gestión" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Proyectos</span>
+                    <h2 class="article-title">Desarrollo de Sistema de Gestión de Pedidos</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 15 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Caso de estudio: Desarrollo e implementación de un sistema de gestión de pedidos para PYMES.</p>
+                    <a href="#" class="article-link" onclick="showArticle('order-system')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artículo: Presupuestador Empresarial -->
+            <article class="article-card" data-category="proyectos">
+                <img src="images/articles/budget-tool.jpg" alt="Presupuestador" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Proyectos</span>
+                    <h2 class="article-title">Herramienta de Presupuestos para PYMES</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 15 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Desarrollo de una herramienta de presupuestos automatizada para pequeñas empresas.</p>
+                    <a href="#" class="article-link" onclick="showArticle('budget-tool')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artículo: Integración de Sensores IoT -->
+            <article class="article-card" data-category="automatizacion">
+                <img src="images/articles/iot-sensors.jpg" alt="Sensores IoT" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Automatización</span>
+                    <h2 class="article-title">Integración de Sensores IoT con Python</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 25 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Guía completa sobre integración de sensores IoT, protocolos de comunicación y procesamiento de datos en tiempo real.</p>
+                    <a href="#" class="article-link" onclick="showArticle('iot-sensors')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artículo: Dashboard de Monitoreo -->
+            <article class="article-card" data-category="proyectos">
+                <img src="images/articles/monitoring-dashboard.jpg" alt="Dashboard" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Proyectos</span>
+                    <h2 class="article-title">Dashboard de Monitoreo Industrial</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 20 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Desarrollo de un dashboard interactivo para monitoreo de procesos industriales usando Python y Dash.</p>
+                    <a href="#" class="article-link" onclick="showArticle('monitoring-dashboard')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artículo: Sistema de Control de Calidad -->
+            <article class="article-card" data-category="proyectos">
+                <img src="images/articles/quality-control.jpg" alt="Control de Calidad" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Proyectos</span>
+                    <h2 class="article-title">Sistema Automatizado de Control de Calidad</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 30 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Implementación de un sistema de control de calidad automatizado con visión por computadora y Python.</p>
+                    <a href="#" class="article-link" onclick="showArticle('quality-control')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Caso de Éxito: Sistema de Gestión de Pedidos -->
+            <article class="article-card" data-category="casos-exito">
+                <img src="images/articles/success-order-system.jpg" alt="Sistema de Gestión" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Casos de Éxito</span>
+                    <h2 class="article-title">Implementación Exitosa: Sistema de Gestión de Pedidos</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 15 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Estudio de caso: Implementación exitosa de sistema de gestión de pedidos para PYME del sector industrial.</p>
+                    <a href="#" class="article-link" onclick="showArticle('success-order-system')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Caso de Éxito: Automatización Industrial -->
+            <article class="article-card" data-category="casos-exito">
+                <img src="images/articles/success-automation.jpg" alt="Automatización Industrial" class="article-image">
+                <div class="article-content">
+                    <span class="article-category">Casos de Éxito</span>
+                    <h2 class="article-title">Transformación Digital: Automatización de Procesos Industriales</h2>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 20 min lectura</span>
+                        <span><i class="far fa-calendar"></i> Marzo 2024</span>
+                    </div>
+                    <p class="article-description">Caso de éxito: Implementación de sistema de automatización que aumentó la eficiencia en 40%.</p>
+                    <a href="#" class="article-link" onclick="showArticle('success-automation')">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Templates de Artículos -->
+    <template id="zero-trust-template">
+        <h2>Zero Trust: El Nuevo Paradigma de Seguridad</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 15 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Introducción al Modelo Zero Trust</h3>
+            <p>El modelo de seguridad Zero Trust parte de la premisa "nunca confiar, siempre verificar". Este enfoque representa un cambio fundamental en la forma en que las organizaciones abordan la seguridad de la información.</p>
+        </section>
+
+        <section class="article-section">
+            <h3>Principios Fundamentales</h3>
+            <ul>
+                <li>Verificación continua de identidad</li>
+                <li>Acceso con privilegios mínimos</li>
+                <li>Microsegmentación de red</li>
+                <li>Monitoreo y logging exhaustivo</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h3>Implementación Práctica</h3>
+            <p>Ejemplo de configuración de política Zero Trust en un firewall:</p>
+            <pre><code class="language-yaml"># Ejemplo de política Zero Trust
+policy:
+  name: "zero-trust-policy"
+  default_action: deny
+  rules:
+    - name: "auth-access"
+      source: any
+      destination: internal_apps
+      action: allow
+      conditions:
+        - verify_identity: true
+        - check_device_health: true
+        - require_mfa: true</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Monitorización y Automatización</h3>
+            <p>Ejemplo de script Python para monitoreo de accesos:</p>
+            <pre><code class="language-python">import logging
+from datetime import datetime
+
+def monitor_access_attempts(user_id, resource, action):
+    logging.basicConfig(filename='access_log.txt', level=logging.INFO)
+    
+    # Registrar intento de acceso
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_entry = f"{timestamp} - Usuario: {user_id} - Recurso: {resource} - Acción: {action}"
+    
+    logging.info(log_entry)
+    
+    # Verificar políticas de acceso
+    if verify_access_policy(user_id, resource):
+        return True
+    else:
+        logging.warning(f"{timestamp} - Acceso denegado para {user_id}")
+        return False</code></pre>
+        </section>
+    </template>
+
+    <!-- Template: Desarrollo Web Moderno -->
+    <template id="modern-web-template">
+        <h2>Desarrollo Web Moderno: JavaScript y HTML Avanzado</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 25 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>JavaScript Moderno y APIs Web</h3>
+            <p>Las APIs web modernas proporcionan funcionalidades poderosas para crear aplicaciones web dinámicas y eficientes. Veamos algunos ejemplos prácticos:</p>
+            
+            <h4>Intersection Observer</h4>
+            <pre><code class="language-javascript">// Implementación de Intersection Observer para lazy loading
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            observer.unobserve(img);
+        }
+    });
+});
+
+// Observar imágenes
+document.querySelectorAll('img[data-src]').forEach(img => observer.observe(img));</code></pre>
+
+            <h4>Web Workers</h4>
+            <pre><code class="language-javascript">// Ejemplo de Web Worker para procesamiento en segundo plano
+// main.js
+const worker = new Worker('worker.js');
+worker.postMessage({ data: largeArray });
+worker.onmessage = (e) => console.log('Resultado:', e.data);
+
+// worker.js
+self.onmessage = (e) => {
+    const result = procesarDatos(e.data);
+    self.postMessage(result);
+};</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>HTML Semántico y Accesibilidad</h3>
+            <p>El HTML semántico mejora la accesibilidad y el SEO de tu sitio web. Aquí hay un ejemplo de estructura semántica:</p>
+            
+            <pre><code class="language-html">&lt;article class="product-card"&gt;
+    &lt;header&gt;
+        &lt;h2&gt;Nombre del Producto&lt;/h2&gt;
+        &lt;p role="doc-subtitle"&gt;Categoría: Electrónica&lt;/p&gt;
+    &lt;/header&gt;
+    
+    &lt;figure&gt;
+        &lt;img src="producto.jpg" alt="Descripción detallada del producto"&gt;
+        &lt;figcaption&gt;Vista frontal del producto&lt;/figcaption&gt;
+    &lt;/figure&gt;
+    
+    &lt;div class="product-details"&gt;
+        &lt;p aria-label="Precio"&gt;$999.99&lt;/p&gt;
+        &lt;button aria-label="Añadir al carrito"&gt;
+            Comprar
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Optimización y Rendimiento</h3>
+            <p>La optimización del rendimiento es crucial para una buena experiencia de usuario. Algunas técnicas clave incluyen:</p>
+            <ul>
+                <li>Lazy loading de imágenes y componentes</li>
+                <li>Minimización y compresión de recursos</li>
+                <li>Implementación de service workers para caching</li>
+                <li>Optimización de la ruta crítica de renderizado</li>
+            </ul>
+        </section>
+    </template>
+
+    <!-- Template: Cloud Security -->
+    <template id="cloud-security-template">
+        <h2>Seguridad en la Nube: Mejores Prácticas y Configuraciones</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 30 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Configuración Segura de AWS</h3>
+            <p>La seguridad en AWS comienza con una configuración adecuada de IAM y servicios básicos:</p>
+            
+            <pre><code class="language-yaml"># Ejemplo de política IAM restrictiva
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::mi-bucket/*",
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": ["IP_PERMITIDA"]
+                }
+            }
+        }
+    ]
+}</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Monitoreo y Logging</h3>
+            <p>Implementación de monitoreo efectivo con CloudWatch:</p>
+            
+            <pre><code class="language-python">import boto3
+from datetime import datetime, timedelta
+
+def monitor_security_events():
+    cloudwatch = boto3.client('cloudwatch')
+    
+    # Configurar alarma para intentos de acceso fallidos
+    cloudwatch.put_metric_alarm(
+        AlarmName='SecurityFailedLogins',
+        MetricName='FailedLoginAttempts',
+        Namespace='SecurityMetrics',
+        Period=300,
+        EvaluationPeriods=2,
+        Threshold=5,
+        ComparisonOperator='GreaterThanThreshold',
+        AlarmActions=['SNS_TOPIC_ARN']
+    )</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Mejores Prácticas de Seguridad</h3>
+            <ul>
+                <li>Implementar encriptación en reposo y en tránsito</li>
+                <li>Utilizar redes privadas virtuales (VPC)</li>
+                <li>Configurar grupos de seguridad restrictivos</li>
+                <li>Mantener actualizados los parches de seguridad</li>
+                <li>Implementar autenticación multifactor (MFA)</li>
+            </ul>
+        </section>
+    </template>
+
+    <!-- Template: Análisis Forense -->
+    <template id="forensics-template">
+        <h2>Análisis Forense Digital: Metodologías y Herramientas</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 20 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Fundamentos del Análisis Forense Digital</h3>
+            <p>El análisis forense digital es una disciplina que combina elementos de derecho y ciencias de la computación para recolectar, analizar y presentar evidencia digital de manera que sea admisible en procesos legales.</p>
+            
+            <h4>Principios Básicos</h4>
+            <ul>
+                <li>Preservación de la evidencia original</li>
+                <li>Cadena de custodia documentada</li>
+                <li>Reproducibilidad de los hallazgos</li>
+                <li>Documentación detallada del proceso</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h3>Herramientas Esenciales</h3>
+            <p>Script de ejemplo para análisis de logs con Python:</p>
+            
+            <pre><code class="language-python">import pandas as pd
+import re
+from datetime import datetime
+
+def analyze_security_logs(log_file):
+    # Patrón para logs de seguridad
+    pattern = r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) \[(\w+)\] (\d+\.\d+\.\d+\.\d+) (\w+): (.*)'
+    
+    logs = []
+    with open(log_file, 'r') as f:
+        for line in f:
+            match = re.match(pattern, line)
+            if match:
+                timestamp, level, ip, action, message = match.groups()
+                logs.append({
+                    'timestamp': datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S'),
+                    'level': level,
+                    'ip': ip,
+                    'action': action,
+                    'message': message
+                })
+    
+    # Análisis con pandas
+    df = pd.DataFrame(logs)
+    suspicious_ips = df[df['level'] == 'WARNING']['ip'].value_counts()
+    return suspicious_ips</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Análisis de Memoria RAM</h3>
+            <p>Ejemplo de uso de Volatility para análisis de memoria:</p>
+            
+            <pre><code class="language-python"># Ejemplo de script para automatizar análisis de memoria
+from volatility3.framework import contexts, automagic
+from volatility3.plugins.windows import pslist, netscan
+
+def analyze_memory_dump(dump_file):
+    # Configurar contexto
+    ctx = contexts.Context()
+    
+    # Listar procesos
+    processes = pslist.PsList(ctx, dump_file)
+    for proc in processes:
+        print(f"PID: {proc.pid} | Nombre: {proc.name}")
+    
+    # Analizar conexiones de red
+    connections = netscan.NetScan(ctx, dump_file)
+    for conn in connections:
+        print(f"Puerto local: {conn.lport} | Remoto: {conn.raddr}")</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Mejores Prácticas en Investigación</h3>
+            <ul>
+                <li>Crear imágenes forenses bit a bit</li>
+                <li>Utilizar herramientas forenses validadas</li>
+                <li>Mantener registros detallados de cada acción</li>
+                <li>Seguir procedimientos estandarizados</li>
+                <li>Preservar metadatos y timestamps</li>
+            </ul>
+        </section>
+    </template>
+
+    <!-- Template: Redes Empresariales -->
+    <template id="enterprise-networks-template">
+        <h2>Diseño de Redes Empresariales Seguras</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 25 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Arquitectura de Red Segura</h3>
+            <p>Una arquitectura de red empresarial segura debe implementar múltiples capas de seguridad y seguir el principio de defensa en profundidad.</p>
+            
+            <h4>Segmentación de Red</h4>
+            <pre><code class="language-yaml"># Ejemplo de configuración de VLANs
+vlans:
+  management:
+    id: 10
+    subnet: 10.0.10.0/24
+    purpose: "Gestión de red"
+  users:
+    id: 20
+    subnet: 10.0.20.0/23
+    purpose: "Red de usuarios"
+  servers:
+    id: 30
+    subnet: 10.0.30.0/24
+    purpose: "Servidores internos"
+  dmz:
+    id: 40
+    subnet: 10.0.40.0/24
+    purpose: "Zona desmilitarizada"</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Implementación de ACLs</h3>
+            <p>Ejemplo de configuración de ACLs en Cisco IOS:</p>
+            
+            <pre><code class="language-python"># Configuración de ACLs
+access-list 101 permit tcp 10.0.20.0 0.0.1.255 10.0.30.0 0.0.0.255 eq 443
+access-list 101 permit tcp 10.0.20.0 0.0.1.255 10.0.30.0 0.0.0.255 eq 80
+access-list 101 deny ip any any log
+
+interface GigabitEthernet0/1
+ description "Red de usuarios"
+ ip access-group 101 in</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Monitoreo y Detección de Intrusiones</h3>
+            <p>Script de ejemplo para monitoreo de red con Python:</p>
+            
+            <pre><code class="language-python">from scapy.all import *
+import logging
+
+def network_monitor(interface):
+    logging.basicConfig(filename='network_monitor.log', level=logging.INFO)
+    
+    def packet_callback(pkt):
+        if IP in pkt:
+            src_ip = pkt[IP].src
+            dst_ip = pkt[IP].dst
+            
+            # Detectar escaneo de puertos
+            if TCP in pkt and pkt[TCP].flags == 2:  # SYN flag
+                logging.warning(f"Posible escaneo de puertos desde {src_ip}")
+            
+            # Detectar tráfico inusual
+            if UDP in pkt and pkt[UDP].dport == 53:
+                # Análisis de consultas DNS
+                if DNS in pkt and pkt[DNS].qr == 0:
+                    query = pkt[DNS].qd.qname.decode()
+                    logging.info(f"Consulta DNS desde {src_ip}: {query}")
+    
+    # Iniciar captura
+    sniff(iface=interface, prn=packet_callback, store=0)</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Mejores Prácticas de Seguridad en Red</h3>
+            <ul>
+                <li>Implementar segmentación de red y VLANs</li>
+                <li>Configurar firewalls y ACLs restrictivas</li>
+                <li>Establecer sistemas de detección/prevención de intrusiones</li>
+                <li>Mantener logs centralizados</li>
+                <li>Implementar autenticación 802.1X</li>
+                <li>Realizar auditorías regulares de seguridad</li>
+            </ul>
+        </section>
+    </template>
+
+    <!-- Templates de nuevos artículos -->
+    <template id="industrial-automation-template">
+        <h2>Automatización Industrial con Python: Guía Práctica</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 20 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Introducción a la Automatización Industrial</h3>
+            <p>La automatización industrial con Python permite crear sistemas robustos y flexibles para el control de procesos industriales.</p>
+        </section>
+
+        <section class="article-section">
+            <h3>Integración de Sensores</h3>
+            <p>Ejemplo de código para lectura de sensores:</p>
+            <pre><code class="language-python">import RPi.GPIO as GPIO
+import time
+
+class SensorMonitor:
+    def __init__(self, pin):
+        self.pin = pin
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(pin, GPIO.IN)
+    
+    def read_value(self):
+        return GPIO.input(self.pin)
+    
+    def monitor_continuous(self, callback, interval=1):
+        while True:
+            value = self.read_value()
+            callback(value)
+            time.sleep(interval)
+
+# Uso del monitor
+def on_sensor_change(value):
+    print(f"Valor del sensor: {value}")
+
+sensor = SensorMonitor(17)
+sensor.monitor_continuous(on_sensor_change)</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Control de Procesos</h3>
+            <p>Ejemplo de sistema de control PID:</p>
+            <pre><code class="language-python">class PIDController:
+    def __init__(self, kp, ki, kd):
+        self.kp = kp
+        self.ki = ki
+        self.kd = kd
+        self.integral = 0
+        self.previous_error = 0
+    
+    def compute(self, setpoint, process_variable):
+        error = setpoint - process_variable
+        self.integral += error
+        derivative = error - self.previous_error
+        
+        output = (self.kp * error +
+                 self.ki * self.integral +
+                 self.kd * derivative)
+        
+        self.previous_error = error
+        return output</code></pre>
+        </section>
+    </template>
+
+    <template id="order-system-template">
+        <h2>Desarrollo de Sistema de Gestión de Pedidos</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 15 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Arquitectura del Sistema</h3>
+            <p>El sistema de gestión de pedidos fue desarrollado usando Python con las siguientes características:</p>
+            <ul>
+                <li>Backend en Flask</li>
+                <li>Base de datos SQLite</li>
+                <li>Interfaz web con Bootstrap</li>
+                <li>Automatización de procesos</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h3>Funcionalidades Principales</h3>
+            <p>Ejemplo de código para gestión de pedidos:</p>
+            <pre><code class="language-python">class OrderManager:
+    def __init__(self, db_path):
+        self.db = sqlite3.connect(db_path)
+        self.cursor = self.db.cursor()
+    
+    def create_order(self, customer_id, items):
+        order_id = self._generate_order_id()
+        total = sum(item['price'] * item['quantity'] for item in items)
+        
+        self.cursor.execute('''
+            INSERT INTO orders (id, customer_id, total, status)
+            VALUES (?, ?, ?, ?)
+        ''', (order_id, customer_id, total, 'pending'))
+        
+        for item in items:
+            self.cursor.execute('''
+                INSERT INTO order_items (order_id, product_id, quantity)
+                VALUES (?, ?, ?)
+            ''', (order_id, item['product_id'], item['quantity']))
+        
+        self.db.commit()
+        return order_id</code></pre>
+        </section>
+    </template>
+
+    <template id="budget-tool-template">
+        <h2>Herramienta de Presupuestos para PYMES</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 15 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Características del Sistema</h3>
+            <p>La herramienta de presupuestos incluye:</p>
+            <ul>
+                <li>Generación automática de presupuestos</li>
+                <li>Gestión de productos y servicios</li>
+                <li>Cálculo automático de impuestos</li>
+                <li>Exportación a PDF</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h3>Implementación</h3>
+            <p>Ejemplo de código para generación de presupuestos:</p>
+            <pre><code class="language-python">class BudgetGenerator:
+    def __init__(self, company_data):
+        self.company = company_data
+        self.items = []
+        self.taxes = 0.21  # IVA
+    
+    def add_item(self, description, quantity, unit_price):
+        self.items.append({
+            'description': description,
+            'quantity': quantity,
+            'unit_price': unit_price
+        })
+    
+    def calculate_total(self):
+        subtotal = sum(item['quantity'] * item['unit_price'] for item in self.items)
+        tax_amount = subtotal * self.taxes
+        return {
+            'subtotal': subtotal,
+            'tax': tax_amount,
+            'total': subtotal + tax_amount
+        }
+    
+    def generate_pdf(self):
+        # Implementación de generación de PDF
+        pass</code></pre>
+        </section>
+    </template>
+
+    <!-- Template: Integración de Sensores IoT -->
+    <template id="iot-sensors-template">
+        <h2>Integración de Sensores IoT con Python</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 25 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Arquitectura del Sistema IoT</h3>
+            <p>Implementación de un sistema IoT completo usando Python:</p>
+            <pre><code class="language-python">import paho.mqtt.client as mqtt
+import json
+from datetime import datetime
+
+class IoTManager:
+    def __init__(self, broker, port):
+        self.client = mqtt.Client()
+        self.client.on_connect = self.on_connect
+        self.client.on_message = self.on_message
+        self.client.connect(broker, port)
+        
+    def on_connect(self, client, userdata, flags, rc):
+        print("Conectado al broker MQTT")
+        self.client.subscribe("sensors/#")
+        
+    def on_message(self, client, userdata, msg):
+        data = json.loads(msg.payload)
+        self.process_sensor_data(data)
+        
+    def process_sensor_data(self, data):
+        timestamp = datetime.now().isoformat()
+        sensor_id = data['sensor_id']
+        value = data['value']
+        
+        # Almacenar en base de datos
+        self.store_data(sensor_id, value, timestamp)
+        
+        # Verificar alertas
+        if self.check_alert_conditions(value):
+            self.send_alert(sensor_id, value)</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Procesamiento de Datos en Tiempo Real</h3>
+            <p>Ejemplo de procesamiento de datos de sensores:</p>
+            <pre><code class="language-python">import numpy as np
+from scipy import signal
+
+class SensorDataProcessor:
+    def __init__(self, window_size=100):
+        self.window_size = window_size
+        self.data_buffer = []
+        
+    def add_data(self, value):
+        self.data_buffer.append(value)
+        if len(self.data_buffer) > self.window_size:
+            self.data_buffer.pop(0)
+            
+    def calculate_statistics(self):
+        if not self.data_buffer:
+            return None
+            
+        data = np.array(self.data_buffer)
+        return {
+            'mean': np.mean(data),
+            'std': np.std(data),
+            'max': np.max(data),
+            'min': np.min(data)
+        }
+        
+    def detect_anomalies(self, threshold=2):
+        if len(self.data_buffer) < self.window_size:
+            return False
+            
+        data = np.array(self.data_buffer)
+        z_scores = np.abs((data - np.mean(data)) / np.std(data))
+        return np.any(z_scores > threshold)</code></pre>
+        </section>
+    </template>
+
+    <!-- Template: Dashboard de Monitoreo -->
+    <template id="monitoring-dashboard-template">
+        <h2>Dashboard de Monitoreo Industrial</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 20 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Arquitectura del Dashboard</h3>
+            <p>Implementación de un dashboard interactivo usando Dash y Plotly:</p>
+            <pre><code class="language-python">import dash
+from dash import dcc, html
+import plotly.graph_objects as go
+from dash.dependencies import Input, Output
+import pandas as pd
+
+app = dash.Dash(__name__)
+
+# Layout del dashboard
+app.layout = html.Div([
+    html.H1('Monitoreo Industrial en Tiempo Real'),
+    
+    dcc.Graph(id='live-graph'),
+    dcc.Interval(
+        id='interval-component',
+        interval=1*1000,  # Actualizar cada segundo
+        n_intervals=0
+    )
+])
+
+@app.callback(
+    Output('live-graph', 'figure'),
+    [Input('interval-component', 'n_intervals')]
+)
+def update_graph(n):
+    # Obtener datos en tiempo real
+    data = get_live_data()
+    
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=data['timestamp'],
+        y=data['value'],
+        mode='lines+markers',
+        name='Temperatura'
+    ))
+    
+    fig.update_layout(
+        title='Temperatura en Tiempo Real',
+        xaxis_title='Tiempo',
+        yaxis_title='Temperatura (°C)'
+    )
+    
+    return fig</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Visualización de Datos</h3>
+            <p>Ejemplo de visualización de datos industriales:</p>
+            <pre><code class="language-python">def create_industrial_plot(data):
+    fig = go.Figure()
+    
+    # Gráfico de línea para valores actuales
+    fig.add_trace(go.Scatter(
+        x=data['timestamp'],
+        y=data['value'],
+        name='Valor Actual',
+        line=dict(color='blue')
+    ))
+    
+    # Líneas de límites
+    fig.add_hline(y=data['upper_limit'], 
+                 line_dash="dash", 
+                 line_color="red",
+                 annotation_text="Límite Superior")
+    
+    fig.add_hline(y=data['lower_limit'],
+                 line_dash="dash",
+                 line_color="red",
+                 annotation_text="Límite Inferior")
+    
+    return fig</code></pre>
+        </section>
+    </template>
+
+    <!-- Template: Sistema de Control de Calidad -->
+    <template id="quality-control-template">
+        <h2>Sistema Automatizado de Control de Calidad</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 30 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Visión por Computadora</h3>
+            <p>Implementación de detección de defectos usando OpenCV:</p>
+            <pre><code class="language-python">import cv2
+import numpy as np
+
+class QualityInspector:
+    def __init__(self, reference_image):
+        self.reference = cv2.imread(reference_image)
+        self.reference_gray = cv2.cvtColor(self.reference, cv2.COLOR_BGR2GRAY)
+        
+    def inspect_product(self, product_image):
+        # Convertir a escala de grises
+        product_gray = cv2.cvtColor(product_image, cv2.COLOR_BGR2GRAY)
+        
+        # Detectar diferencias
+        diff = cv2.absdiff(self.reference_gray, product_gray)
+        _, threshold = cv2.threshold(diff, 30, 255, cv2.THRESH_BINARY)
+        
+        # Encontrar contornos
+        contours, _ = cv2.findContours(threshold, 
+                                     cv2.RETR_EXTERNAL, 
+                                     cv2.CHAIN_APPROX_SIMPLE)
+        
+        # Analizar defectos
+        defects = []
+        for contour in contours:
+            area = cv2.contourArea(contour)
+            if area > 100:  # Umbral de área mínima
+                defects.append(contour)
+                
+        return len(defects) > 0, defects</code></pre>
+        </section>
+
+        <section class="article-section">
+            <h3>Automatización del Proceso</h3>
+            <p>Integración con sistema de control industrial:</p>
+            <pre><code class="language-python">class QualityControlSystem:
+    def __init__(self, camera, conveyor):
+        self.camera = camera
+        self.conveyor = conveyor
+        self.inspector = QualityInspector('reference.jpg')
+        
+    def run_inspection(self):
+        while True:
+            # Capturar imagen
+            image = self.camera.capture()
+            
+            # Inspeccionar producto
+            has_defects, defects = self.inspector.inspect_product(image)
+            
+            if has_defects:
+                # Detener cinta transportadora
+                self.conveyor.stop()
+                
+                # Registrar defecto
+                self.log_defect(image, defects)
+                
+                # Esperar intervención humana
+                self.wait_for_operator()
+            else:
+                # Continuar producción
+                self.conveyor.move()</code></pre>
+        </section>
+    </template>
+
+    <!-- Template: Implementación Exitosa: Sistema de Gestión de Pedidos -->
+    <template id="success-order-system-template">
+        <h2>Implementación Exitosa: Sistema de Gestión de Pedidos</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 15 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Contexto del Proyecto</h3>
+            <p>Cliente: Empresa manufacturera de mediano tamaño</p>
+            <ul>
+                <li>Problema: Gestión manual de pedidos y facturación</li>
+                <li>Objetivo: Automatizar el proceso de pedidos y mejorar la eficiencia</li>
+                <li>Duración: 3 meses</li>
+                <li>Presupuesto: $15,000 USD</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h3>Solución Implementada</h3>
+            <p>Desarrollo de un sistema integral que incluye:</p>
+            <ul>
+                <li>Backend en Python con Flask</li>
+                <li>Base de datos PostgreSQL</li>
+                <li>Interfaz web responsive</li>
+                <li>Integración con sistema de facturación</li>
+                <li>API REST para integración con otros sistemas</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h3>Resultados Obtenidos</h3>
+            <ul>
+                <li>Reducción del 60% en tiempo de procesamiento de pedidos</li>
+                <li>Disminución del 45% en errores de facturación</li>
+                <li>Mejora del 75% en la satisfacción del cliente</li>
+                <li>ROI positivo en 6 meses</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h3>Lecciones Aprendidas</h3>
+            <ul>
+                <li>Importancia de la capacitación del personal</li>
+                <li>Necesidad de documentación detallada</li>
+                <li>Valor de la retroalimentación continua</li>
+                <li>Beneficios de la metodología ágil</li>
+            </ul>
+        </section>
+    </template>
+
+    <!-- Template: Transformación Digital: Automatización de Procesos Industriales -->
+    <template id="success-automation-template">
+        <h2>Transformación Digital: Automatización de Procesos Industriales</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 20 minutos de lectura</span>
+            <span><i class="far fa-user"></i> Por Taiel Aguirre</span>
+            <span><i class="far fa-calendar"></i> Marzo 2024</span>
+        </div>
+
+        <section class="article-section">
+            <h3>Desafío Inicial</h3>
+            <p>Cliente: Fábrica de componentes automotrices</p>
+            <ul>
+                <li>Problema: Procesos manuales y propensos a errores</li>
+                <li>Objetivo: Automatizar línea de producción</li>
+                <li>Duración: 6 meses</li>
+                <li>Presupuesto: $50,000 USD</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h3>Implementación Técnica</h3>
+            <p>Solución desarrollada:</p>
+            <ul>
+                <li>Sistema de control PLC con Python</li>
+                <li>Red de sensores IoT</li>
+                <li>Dashboard de monitoreo en tiempo real</li>
+                <li>Sistema de alertas y notificaciones</li>
+                <li>Integración con ERP existente</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h3>Impacto del Proyecto</h3>
+            <ul>
+                <li>Aumento del 40% en eficiencia de producción</li>
+                <li>Reducción del 70% en errores de calidad</li>
+                <li>Disminución del 30% en costos operativos</li>
+                <li>Mejora del 50% en tiempo de respuesta</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h3>Testimonios</h3>
+            <blockquote>
+                "La implementación del sistema de automatización transformó nuestra operación. Ahora podemos monitorear y controlar todo el proceso en tiempo real."
+                <footer>- Gerente de Producción</footer>
+            </blockquote>
+            <blockquote>
+                "El ROI del proyecto superó nuestras expectativas. La reducción de errores y el aumento de eficiencia han sido significativos."
+                <footer>- Director de Operaciones</footer>
+            </blockquote>
+        </section>
+    </template>
+
+    <!-- Modal para mostrar artículos -->
+    <div class="article-modal" id="articleModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="articleContent"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
+    <script>
+        // Funcionalidad de filtros
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Actualizar botones activos
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filtrar artículos
+                const category = button.dataset.category;
+                document.querySelectorAll('.article-card').forEach(article => {
+                    if (category === 'todos' || article.dataset.category === category) {
+                        article.style.display = 'block';
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Funcionalidad del modal
+        const modal = document.getElementById('articleModal');
+        const closeBtn = document.querySelector('.close-modal');
+        const articleContent = document.getElementById('articleContent');
+
+        function showArticle(templateId) {
+            const template = document.getElementById(`${templateId}-template`);
+            if (template) {
+                articleContent.innerHTML = template.innerHTML;
+                modal.style.display = 'block';
+                // Recargar Prism para el resaltado de código
+                Prism.highlightAll();
+            }
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Funcionalidad de copiar código
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('copy-btn')) {
+                const codeBlock = e.target.parentElement.querySelector('code');
+                navigator.clipboard.writeText(codeBlock.textContent);
+                
+                e.target.textContent = '¡Copiado!';
+                setTimeout(() => {
+                    e.target.textContent = 'Copiar';
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html> 

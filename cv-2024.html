@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es" itemscope itemtype="http://schema.org/Person">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV 2025 | Taiel Aguirre - Especialista en Ciberseguridad y Cloud</title>
+    <meta name="description" content="Especialista certificado en seguridad en la nube con Professional Cloud Security Engineer (Google), CCSK v.4 (CSA) y AWS Security Specialty">
+    <!-- Metadatos para ATS -->
+    <meta name="keywords" content="Ciberseguridad, Cloud Security, AWS, Google Cloud, CCSK, Python, Java, PHP, Redes, Seguridad Informática, Pentesting, Automatización, DevSecOps, Inteligencia Artificial, Machine Learning, Deep Learning, TensorFlow, PyTorch, Automatización con IA">
+    <meta name="robots" content="index, follow">
+    <meta itemprop="name" content="Taiel Aguirre">
+    <meta itemprop="jobTitle" content="Especialista Certificado en Seguridad en la Nube">
+    <meta itemprop="email" content="taielaguirr@gmail.com">
+    <meta itemprop="telephone" content="291-4476665">
+    <meta itemprop="address" content="Bouchard 1434, Bahía blanca, BS AS">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #22c55e;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .header .title {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .experience-item, .education-item, .certification-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .experience-item:hover, .education-item:hover, .certification-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .item-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .item-subtitle {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .item-description {
+            color: var(--gray);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-category {
+            padding: 1rem;
+            background: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            color: var(--gray);
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list li::before {
+            content: "•";
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+        .download-cv {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-cv:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        @media print {
+            .download-cv {
+                display: none;
+            }
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            background: var(--light);
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .social-link i {
+            font-size: 1.2rem;
+        }
+
+        @media print {
+            .social-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" itemscope itemtype="http://schema.org/Resume">
+        <header class="header">
+            <h1 itemprop="name">Taiel Aguirre</h1>
+            <div class="title" itemprop="jobTitle">Especialista Certificado en Seguridad en la Nube</div>
+            <div class="contact-info">
+                <div class="contact-item" itemprop="email">
+                    <i class="fas fa-envelope"></i>
+                    <span>taielaguirr@gmail.com</span>
+                </div>
+                <div class="contact-item" itemprop="telephone">
+                    <i class="fas fa-phone"></i>
+                    <span>291-4476665</span>
+                </div>
+                <div class="contact-item" itemprop="address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Bouchard 1434, Bahía blanca, BS AS</span>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://taielaguirre.github.io/Portafolio/" target="_blank" rel="noopener" class="social-link" itemprop="url">
+                    <i class="fas fa-globe"></i>
+                    <span>Portfolio</span>
+                </a>
+                <a href="https://github.com/TaielAguirre" target="_blank" rel="noopener" class="social-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://linkedin.com/in/taiel-aguirre" target="_blank" rel="noopener" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">Perfil Profesional</h2>
+            <p itemprop="description">
+                Especialista en informática con experiencia en ciberseguridad, redes y desarrollo de software. 
+                Certificado en AWS Security, Google Cloud Security y CCSK. 
+                Enfoque en la protección de sistemas, análisis forense y desarrollo de soluciones digitales para empresas. 
+                Sólida formación en administración de redes, seguridad informática y programación, 
+                con un historial comprobado en la implementación de medidas de ciberseguridad y creación de aplicaciones comerciales.
+                Experiencia en: Cloud Security, DevSecOps, Pentesting, Automatización Industrial, Desarrollo Seguro.
+            </p>
+        </section>
+
+        <section class="section" itemprop="workExperience">
+            <h2 class="section-title">Experiencia Profesional</h2>
+            
+            <div class="experience-item" itemscope itemtype="http://schema.org/WorkPosition">
+                <div class="item-header">
+                    <h3 class="item-title" itemprop="jobTitle">Especialista en E-commerce y Desarrollo de Software</h3>
+                    <span class="item-date" itemprop="dateOccupied">Actualidad</span>
+                </div>
+                <div class="item-subtitle" itemprop="employerName">Electroprima S.L.R</div>
+                <ul class="item-description" itemprop="responsibilities">
+                    <li>Gestión y mantenimiento de la página web de PrestaShop</li>
+                    <li>Desarrollo de aplicaciones internas en PHP, Java y Python</li>
+                    <li>Implementación de medidas de ciberseguridad</li>
+                    <li>Automatización de procesos internos</li>
+                    <li>Implementación de protocolos de seguridad y buenas prácticas OWASP</li>
+                    <li>Gestión de infraestructura cloud y seguridad en AWS</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <h3 class="item-title">Tauro Computación</h3>
+                    <span class="item-date">2024 - 2025</span>
+                </div>
+                <div class="item-subtitle">Instructor de cursos de armado y configuración PC/Redes</div>
+                <ul class="item-description">
+                    <li>Instrucción en configuración de hardware y redes informáticas</li>
+                    <li>Desarrollo de material educativo y guías prácticas</li>
+                    <li>Configuración y mantenimiento de equipos</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <h3 class="item-title">SD Energías Renovables</h3>
+                    <span class="item-date">2023 - 2024</span>
+                </div>
+                <div class="item-subtitle">Encargado de sector de telecomunicaciones</div>
+                <ul class="item-description">
+                    <li>Configuración y mantenimiento de antenas y aparatos wireless</li>
+                    <li>Instalación de cámaras de seguridad</li>
+                    <li>Atención al cliente y soporte técnico</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <h3 class="item-title">MaxHard PC</h3>
+                    <span class="item-date">2018 - 2019</span>
+                </div>
+                <div class="item-subtitle">Programador y ensamble de hardware</div>
+                <ul class="item-description">
+                    <li>Diseñador y programador de página web</li>
+                    <li>Ensamblaje y mantenimiento de hardware</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" itemprop="hasCredential">
+            <h2 class="section-title">Certificaciones y Formación</h2>
+            
+            <div class="certification-item" itemscope itemtype="http://schema.org/EducationalOccupationalCredential">
+                <div class="item-header">
+                    <h3 class="item-title" itemprop="credentialCategory">Professional Cloud Security Engineer</h3>
+                    <span class="item-date" itemprop="dateCreated">2024</span>
+                </div>
+                <div class="item-subtitle" itemprop="recognizedBy">Google Cloud</div>
+                <div class="cert-skills">
+                    <span itemprop="skill">Cloud Security</span>
+                    <span itemprop="skill">IAM</span>
+                    <span itemprop="skill">Seguridad en infraestructura</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">Certificate of Cloud Security Knowledge v.4 (CCSK)</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Cloud Security Alliance</div>
+                <div class="cert-skills">
+                    <span>Cloud Architecture</span>
+                    <span>Security Controls</span>
+                    <span>Compliance</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">AWS Certified Security – Specialty</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Amazon Web Services</div>
+                <div class="cert-skills">
+                    <span>IAM</span>
+                    <span>Security Groups</span>
+                    <span>VPC Security</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">Curso de Hacking Ético y Ciberseguridad</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Plataformas Online</div>
+                <div class="cert-skills">
+                    <span>Pentesting</span>
+                    <span>Análisis de Vulnerabilidades</span>
+                    <span>Seguridad Web</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">Desarrollo Web Seguro - OWASP Top 10</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Cursos Especializados</div>
+                <div class="cert-skills">
+                    <span>OWASP</span>
+                    <span>Seguridad Web</span>
+                    <span>Buenas Prácticas</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">Machine Learning Foundations</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">freeCodeCamp</div>
+                <div class="cert-skills">
+                    <span>Python</span>
+                    <span>TensorFlow</span>
+                    <span>Neural Networks</span>
+                    <span>Data Analysis</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">AI Programming with Python</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Udacity</div>
+                <div class="cert-skills">
+                    <span>NumPy</span>
+                    <span>Pandas</span>
+                    <span>PyTorch</span>
+                    <span>Machine Learning</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">Introduction to Machine Learning</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Kaggle</div>
+                <div class="cert-skills">
+                    <span>Scikit-learn</span>
+                    <span>Data Science</span>
+                    <span>Model Training</span>
+                    <span>Python</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">Deep Learning Fundamentals</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Fast.ai</div>
+                <div class="cert-skills">
+                    <span>PyTorch</span>
+                    <span>Computer Vision</span>
+                    <span>NLP</span>
+                    <span>Deep Learning</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">Complete Machine Learning & Deep Learning Bootcamp</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Udemy</div>
+                <div class="cert-skills">
+                    <span>Python</span>
+                    <span>TensorFlow</span>
+                    <span>Scikit-learn</span>
+                    <span>Deep Learning</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">Python for Computer Vision with OpenCV & Deep Learning</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Udemy</div>
+                <div class="cert-skills">
+                    <span>OpenCV</span>
+                    <span>Computer Vision</span>
+                    <span>Image Processing</span>
+                    <span>Object Detection</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">Natural Language Processing with Python</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Udemy</div>
+                <div class="cert-skills">
+                    <span>NLP</span>
+                    <span>NLTK</span>
+                    <span>SpaCy</span>
+                    <span>Text Analysis</span>
+                </div>
+            </div>
+
+            <div class="certification-item">
+                <div class="item-header">
+                    <h3 class="item-title">Modern Artificial Intelligence & Machine Learning Bootcamp</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Udemy</div>
+                <div class="cert-skills">
+                    <span>AI Development</span>
+                    <span>Neural Networks</span>
+                    <span>Reinforcement Learning</span>
+                    <span>GANs</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" itemprop="hasSkill">
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> Inteligencia Artificial</h3>
+                    <ul class="skill-list">
+                        <li itemprop="knowsAbout">Machine Learning y Deep Learning</li>
+                        <li itemprop="knowsAbout">TensorFlow y PyTorch</li>
+                        <li itemprop="knowsAbout">Procesamiento de Lenguaje Natural (NLP)</li>
+                        <li itemprop="knowsAbout">Computer Vision</li>
+                        <li itemprop="knowsAbout">Automatización con IA</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Desarrollo</h3>
+                    <ul class="skill-list">
+                        <li>Python (NumPy, Pandas, Scikit-learn)</li>
+                        <li>APIs y Microservicios</li>
+                        <li>Desarrollo web</li>
+                        <li>Bases de datos SQL y NoSQL</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-shield-alt"></i> Ciberseguridad</h3>
+                    <ul class="skill-list">
+                        <li itemprop="knowsAbout">Identificación y mitigación de vulnerabilidades</li>
+                        <li itemprop="knowsAbout">Configuración de firewalls y WAF</li>
+                        <li itemprop="knowsAbout">Análisis de tráfico con Wireshark</li>
+                        <li itemprop="knowsAbout">Herramientas de pentesting (Nmap, Metasploit)</li>
+                        <li itemprop="knowsAbout">SIEM y monitoreo de seguridad</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-network-wired"></i> Redes</h3>
+                    <ul class="skill-list">
+                        <li>Configuración de redes</li>
+                        <li>Gestión de direcciones IP</li>
+                        <li>Administración de servidores</li>
+                        <li>Optimización de redes</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-robot"></i> Automatización</h3>
+                    <ul class="skill-list">
+                        <li>Sistemas de control</li>
+                        <li>IoT</li>
+                        <li>Procesos industriales</li>
+                        <li>Monitoreo en tiempo real</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Proyectos Destacados</h2>
+            
+            <div class="experience-item">
+                <div class="item-header">
+                    <h3 class="item-title">OrbitaIA - Plataforma de IA para Automatización de Ventas</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Proyecto Full Stack con IA</div>
+                <ul class="item-description">
+                    <li>Desarrollo de plataforma de IA para automatización de ventas y marketing</li>
+                    <li>Implementación de sistema conversacional con GPT-4/Claude y DeepSeek</li>
+                    <li>Arquitectura de microservicios con Python FastAPI y React/Next.js</li>
+                    <li>Integración con múltiples bases de datos (PostgreSQL, Vector DB, Redis)</li>
+                    <li>Sistema de análisis y métricas en tiempo real</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <h3 class="item-title">Sistema de Gestión de Presupuestos y Materiales</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Aplicación Web Empresarial</div>
+                <ul class="item-description">
+                    <li>Desarrollo de sistema profesional con PHP 8.0+ y JavaScript ES6+</li>
+                    <li>Implementación de interfaz tipo Excel con AG Grid Enterprise</li>
+                    <li>Sistema de gestión de múltiples monedas y actualización automática</li>
+                    <li>API RESTful con manejo avanzado de datos y validaciones</li>
+                    <li>Integración con sistema Flexxus y exportación multi-formato</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <h3 class="item-title">Sistema de Monitoreo Industrial con IA</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Software Industrial</div>
+                <ul class="item-description">
+                    <li>Desarrollo de sistema de monitoreo con soporte para múltiples protocolos (Modbus TCP, OPC UA, MQTT)</li>
+                    <li>Implementación de interfaz gráfica moderna para visualización en tiempo real</li>
+                    <li>Sistema de almacenamiento y análisis de datos históricos</li>
+                    <li>Integración con sistemas de alertas configurables</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <h3 class="item-title">FlexxusIA - Automatización Inteligente</h3>
+                    <span class="item-date">2024</span>
+                </div>
+                <div class="item-subtitle">Software de Automatización</div>
+                <ul class="item-description">
+                    <li>Desarrollo de sistema de automatización para Flexxus mediante Python</li>
+                    <li>Implementación de grabación y reproducción de acciones del usuario</li>
+                    <li>Sistema de coordenadas relativas para compatibilidad multi-pantalla</li>
+                    <li>Interfaz de usuario intuitiva con opciones de grabación y reproducción</li>
+                </ul>
+            </div>
+        </section>
+
+        <a href="#" onclick="window.print(); return false;" class="download-cv">
+            <i class="fas fa-download"></i>
+            Descargar CV
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            const container = document.querySelector('.container');
+            const footer = document.createElement('div');
+            footer.style.textAlign = 'center';
+            footer.style.marginTop = '2rem';
+            footer.style.color = 'var(--gray)';
+            footer.style.fontSize = '0.9rem';
+            footer.innerHTML = `Última actualización: ${formattedDate}`;
+            container.appendChild(footer);
+        });
+    </script>
+</body>
+</html> 

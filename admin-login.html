@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Administrativo | NetLoom Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 420px;
+            padding: 2.5rem;
+            margin: 1rem;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .login-header img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 1.5rem;
+        }
+        
+        .login-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: #333;
+            margin: 0;
+        }
+        
+        .login-header p {
+            color: #666;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .login-form {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .input-group {
+            position: relative;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            padding-left: 2.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #2a7de1;
+        }
+        
+        button {
+            display: block;
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background-color: #2a7de1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #1a6ecc;
+        }
+        
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .back-link:hover {
+            color: #2a7de1;
+        }
+        
+        .login-footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        .alert {
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: none;
+        }
+        
+        .alert i {
+            margin-right: 0.5rem;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            width: auto;
+            font-size: 1rem;
+        }
+        
+        .password-toggle:hover {
+            color: #666;
+            background: none;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <img src="images/netloom-logo.png" alt="NetLoom Logo">
+            <h1>Panel de Administración</h1>
+            <p>Ingresa tus datos para acceder</p>
+        </div>
+        
+        <div id="loginAlert" class="alert">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="alertMessage">Usuario o contraseña incorrectos</span>
+        </div>
+        
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <div class="input-group">
+                    <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required>
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                    <i class="fas fa-lock"></i>
+                    <button type="button" id="togglePassword" class="password-toggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <button type="submit" id="loginButton">
+                <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+            </button>
+        </form>
+        
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Volver al Portafolio
+        </a>
+        
+        <div class="login-footer">
+            <p>&copy; 2024 NetLoom Solutions - Todos los derechos reservados</p>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const loginAlert = document.getElementById('loginAlert');
+            const alertMessage = document.getElementById('alertMessage');
+            const togglePassword = document.getElementById('togglePassword');
+            
+            // Verificar si hay un bloqueo por demasiados intentos
+            function checkLoginBlock() {
+                const blockedUntil = parseInt(localStorage.getItem('login_blocked_until') || '0');
+                
+                if (blockedUntil > Date.now()) {
+                    const remainingMinutes = Math.ceil((blockedUntil - Date.now()) / (60 * 1000));
+                    showAlert(`Demasiados intentos fallidos. Intenta nuevamente en ${remainingMinutes} minutos.`);
+                    return true;
+                }
+                
+                return false;
+            }
+            
+            // Mostrar mensaje de alerta
+            function showAlert(message) {
+                alertMessage.textContent = message;
+                loginAlert.style.display = 'block';
+            }
+            
+            // Ocultar mensaje de alerta
+            function hideAlert() {
+                loginAlert.style.display = 'none';
+            }
+            
+            // Comprobar bloqueo al cargar
+            checkLoginBlock();
+            
+            // Event listener para mostrar/ocultar contraseña
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // Cambiar el icono según el estado
+                const icon = this.querySelector('i');
+                if (type === 'text') {
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+            
+            // Event listener para submit del formulario
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Ocultar alerta previa
+                hideAlert();
+                
+                // Verificar bloqueo
+                if (checkLoginBlock()) {
+                    return;
+                }
+                
+                // Credenciales (hardcoded para este ejemplo)
+                // En producción deberías usar una verificación más segura en servidor
+                const correctUsername = 'taielaguirre';
+                const correctPassword = 'NetLoom2024!';
+                
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value;
+                
+                // Verificar credenciales
+                if (username === correctUsername && password === correctPassword) {
+                    // Login exitoso
+                    
+                    // Registrar intento exitoso
+                    if (typeof SecurityManager !== 'undefined' && SecurityManager.logLoginAttempt) {
+                        SecurityManager.logLoginAttempt(true);
+                    } else {
+                        // Función simplificada si no existe SecurityManager
+                        const attempts = JSON.parse(localStorage.getItem('login_attempts') || '[]');
+                        attempts.push({
+                            date: Date.now(),
+                            success: true
+                        });
+                        localStorage.setItem('login_attempts', JSON.stringify(attempts));
+                    }
+                    
+                    // Establecer estado de autenticación (24 horas)
+                    const expirationTime = Date.now() + (24 * 60 * 60 * 1000);
+                    localStorage.setItem('admin_logged_in', 'true');
+                    localStorage.setItem('admin_session_expires', expirationTime.toString());
+                    
+                    // Redireccionar al panel admin
+                    window.location.href = 'admin-panel.html';
+                } else {
+                    // Login fallido
+                    
+                    // Registrar intento fallido
+                    if (typeof SecurityManager !== 'undefined' && SecurityManager.logLoginAttempt) {
+                        SecurityManager.logLoginAttempt(false);
+                    } else {
+                        // Función simplificada si no existe SecurityManager
+                        const attempts = JSON.parse(localStorage.getItem('login_attempts') || '[]');
+                        attempts.push({
+                            date: Date.now(),
+                            success: false
+                        });
+                        
+                        // Mantener solo los últimos 10 intentos
+                        if (attempts.length > 10) {
+                            attempts.shift();
+                        }
+                        
+                        localStorage.setItem('login_attempts', JSON.stringify(attempts));
+                        
+                        // Verificar intentos fallidos recientes
+                        const recentFailedAttempts = attempts
+                            .filter(a => !a.success && a.date > Date.now() - 15 * 60 * 1000)
+                            .length;
+                        
+                        if (recentFailedAttempts >= 5) {
+                            localStorage.setItem('login_blocked_until', (Date.now() + 30 * 60 * 1000).toString());
+                        }
+                    }
+                    
+                    // Comprobar si se ha excedido el límite de intentos
+                    if (checkLoginBlock()) {
+                        return;
+                    }
+                    
+                    // Mostrar mensaje de error
+                    showAlert('Usuario o contraseña incorrectos');
+                }
+            });
+            
+            // Limpiar alerta al escribir
+            usernameInput.addEventListener('input', hideAlert);
+            passwordInput.addEventListener('input', hideAlert);
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,207 @@
+<article class="full-article">
+    <header class="article-header">
+        <h2>Fundamentos de Seguridad en la Nube</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 15 min lectura</span>
+            <span><i class="fas fa-book-reader"></i> Nivel: Básico</span>
+            <span><i class="fas fa-tag"></i> Cloud Security</span>
+        </div>
+    </header>
+
+    <section class="article-section">
+        <h3>Introducción a la Seguridad en la Nube</h3>
+        <p>
+            La seguridad en la nube es fundamental en la era digital actual. Con la creciente adopción 
+            de servicios cloud, entender los principios básicos de seguridad es esencial para proteger 
+            los activos digitales de una organización.
+        </p>
+    </section>
+
+    <section class="article-section">
+        <h3>1. Modelo de Responsabilidad Compartida</h3>
+        <p>
+            El modelo de responsabilidad compartida es un concepto fundamental en la seguridad cloud:
+        </p>
+        <ul class="article-list">
+            <li>Responsabilidades del proveedor cloud</li>
+            <li>Responsabilidades del cliente</li>
+            <li>Áreas de responsabilidad compartida</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-json">
+{
+    "shared_responsibility": {
+        "cloud_provider": {
+            "physical_security": true,
+            "network_infrastructure": true,
+            "hypervisor": true
+        },
+        "customer": {
+            "data_security": true,
+            "access_management": true,
+            "application_security": true
+        },
+        "shared": {
+            "network_controls": true,
+            "configuration_management": true,
+            "patch_management": true
+        }
+    }
+}</code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>2. IAM y Control de Acceso</h3>
+        <p>
+            La gestión de identidades y accesos (IAM) es crucial para la seguridad en la nube:
+        </p>
+        <ul class="article-list">
+            <li>Autenticación multifactor (MFA)</li>
+            <li>Gestión de roles y permisos</li>
+            <li>Principio de mínimo privilegio</li>
+            <li>Rotación de credenciales</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-python">
+def configure_iam_policy():
+    return {
+        "Version": "2012-10-17",
+        "Statement": [{
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::my-bucket",
+                "arn:aws:s3:::my-bucket/*"
+            ],
+            "Condition": {
+                "Bool": {
+                    "aws:MultiFactorAuthPresent": "true"
+                }
+            }
+        }]
+    }</code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>3. Seguridad de Datos</h3>
+        <p>
+            La protección de datos en la nube abarca varios aspectos:
+        </p>
+        <ul class="article-list">
+            <li>Encriptación en reposo y en tránsito</li>
+            <li>Gestión de claves</li>
+            <li>Clasificación de datos</li>
+            <li>Backup y recuperación</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-python">
+from cloud_security import Encryption, KeyManagement
+
+class DataSecurity:
+    def __init__(self):
+        self.kms = KeyManagement()
+        self.encryption = Encryption()
+    
+    def secure_data(self, data, sensitivity_level):
+        # Generar clave de encriptación
+        key = self.kms.generate_key(
+            key_spec="AES_256",
+            key_usage="ENCRYPT_DECRYPT"
+        )
+        
+        # Encriptar datos
+        encrypted_data = self.encryption.encrypt(
+            data=data,
+            key=key,
+            algorithm="AES-GCM"
+        )
+        
+        return {
+            "encrypted_data": encrypted_data,
+            "key_id": key.id,
+            "encryption_context": {
+                "sensitivity": sensitivity_level
+            }
+        }</code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>4. Configuración Segura</h3>
+        <p>
+            La configuración segura de servicios cloud es esencial:
+        </p>
+        <ul class="article-list">
+            <li>Hardening de servicios</li>
+            <li>Gestión de parches</li>
+            <li>Monitoreo de configuración</li>
+            <li>Automatización de seguridad</li>
+        </ul>
+    </section>
+
+    <section class="article-section">
+        <h3>5. Mejores Prácticas y Frameworks</h3>
+        <p>
+            Frameworks y estándares comunes incluyen:
+        </p>
+        <ul class="article-list">
+            <li>CIS Benchmarks</li>
+            <li>NIST Cybersecurity Framework</li>
+            <li>ISO 27017 (Cloud Security)</li>
+            <li>CSA STAR</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-python">
+class SecurityCompliance:
+    def __init__(self):
+        self.frameworks = {
+            "CIS": CISBenchmarks(),
+            "NIST": NISTFramework(),
+            "ISO": ISO27017(),
+            "CSA": CSAStarProgram()
+        }
+    
+    def assess_compliance(self, cloud_resources):
+        compliance_report = {}
+        
+        for framework_name, framework in self.frameworks.items():
+            # Evaluar cumplimiento
+            assessment = framework.evaluate(cloud_resources)
+            
+            # Generar recomendaciones
+            recommendations = framework.get_recommendations(
+                assessment.gaps
+            )
+            
+            compliance_report[framework_name] = {
+                "compliance_score": assessment.score,
+                "findings": assessment.findings,
+                "recommendations": recommendations
+            }
+        
+        return compliance_report</code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>Conclusiones</h3>
+        <p>
+            Para mantener una postura de seguridad sólida en la nube:
+        </p>
+        <ul class="article-list">
+            <li>Implementar controles de seguridad básicos</li>
+            <li>Seguir las mejores prácticas de la industria</li>
+            <li>Mantener una vigilancia continua</li>
+            <li>Actualizar conocimientos regularmente</li>
+        </ul>
+        <p>
+            Recuerda que la seguridad en la nube es un proceso continuo que requiere 
+            atención constante y adaptación a nuevas amenazas y tecnologías.
+        </p>
+    </section>
+</article> 

@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taiel Aguirre | Especialista en Ciberseguridad Industrial y Automatización</title>
+    <meta name="description" content="Especialista en Ciberseguridad Industrial (OT/ICS) y Automatización | SCADA Security | PLC Security | Industrial Network Security | ISA/IEC 62443">
+    <meta name="keywords" content="Ciberseguridad Industrial, ICS Security, SCADA Security, OT Security, Industrial Automation, PLC Programming, Industrial Networks, ISA/IEC 62443, Industrial Cybersecurity, Network Security">
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #00cc99;
+            --dark-color: #1a1a2e;
+            --light-color: #f5f5f7;
+            --accent-color: #ff6b6b;
+            --gray-color: #555;
+            --light-gray: #ddd;
+            --font-main: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .cv-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            padding: 60px 40px;
+            background: linear-gradient(135deg, var(--dark-color), #16213e);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="40" height="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .name-title {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-item {
+            margin-right: 30px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .profile-summary {
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: var(--light-gray);
+            margin-left: 15px;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 40px;
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 30px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--light-gray);
+        }
+        
+        .job-title, .edu-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+        
+        .company, .institution {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .date {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            margin-bottom: 10px;
+        }
+        
+        .job-description, .edu-description {
+            margin-bottom: 10px;
+        }
+        
+        .job-description ul, .skills-list {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+        
+        .job-description li, .skills-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .job-description li::before, .skills-list li::before {
+            content: '✓';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .side-content {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 30px;
+        }
+        
+        .skills-category {
+            margin-bottom: 25px;
+        }
+        
+        .skills-category h3 {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .skills-list {
+            margin-bottom: 0;
+        }
+        
+        .reference {
+            margin-bottom: 20px;
+        }
+        
+        .reference-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .reference-company {
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        
+        .languages {
+            margin-top: 30px;
+        }
+        
+        .language-item {
+            margin-bottom: 15px;
+        }
+        
+        .language-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .language-level {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+        
+        .language-bar {
+            height: 6px;
+            background: var(--light-gray);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .language-progress {
+            height: 100%;
+            background: var(--gradient);
+        }
+        
+        .portfolio-link {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .portfolio-link a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-link a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .download-actions {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .download-btn {
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            text-decoration: none;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .download-btn i {
+            margin-right: 6px;
+        }
+        
+        .download-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .print-btn {
+            background: rgba(0, 204, 153, 0.2);
+            border-color: rgba(0, 204, 153, 0.3);
+        }
+        
+        .print-btn:hover {
+            background: rgba(0, 204, 153, 0.3);
+        }
+        
+        .cert-badge {
+            display: inline-block;
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--primary-color);
+            padding: 3px 10px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .cv-container {
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            .download-actions {
+                display: none !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-summary, .main-content {
+                padding: 20px;
+            }
+            
+            .download-actions {
+                position: relative;
+                top: 0;
+                right: 0;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem !important;
+            }
+            
+            .title {
+                font-size: 1.1rem !important;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-item {
+                margin-right: 0;
+                margin-bottom: 8px;
+            }
+            
+            .section-title {
+                font-size: 1.3rem !important;
+            }
+            
+            .job-title, .edu-title {
+                font-size: 1.1rem !important;
+            }
+            
+            .company, .institution {
+                font-size: 1rem !important;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .download-actions .download-btn {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+        }
+        
+        .cv-footer {
+            margin-top: 40px;
+            padding: 30px 40px;
+            background: #f0f2f5;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .updated-date {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            margin-bottom: 10px;
+        }
+        
+        .footer-note {
+            font-size: 0.85rem;
+            color: var(--gray-color);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+        
+        @media print {
+            .cv-footer {
+                background: white;
+                padding: 20px 0;
+            }
+        }
+
+        /* Estilos para la sección de habilidades de trabajo remoto */
+        .skills-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .skill-category {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-item {
+            background: var(--primary-light);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: var(--primary);
+        }
+
+        /* Mejoras en la sección de educación */
+        .education-item {
+            border-left: 4px solid var(--primary);
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .edu-title {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .institution {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .edu-description ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .edu-description li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .edu-description li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="cv-container">
+        <div class="download-actions">
+            <a href="javascript:window.print()" class="download-btn print-btn">
+                <i class="fas fa-print"></i> Imprimir CV
+            </a>
+            <a href="#" id="download-pdf" class="download-btn">
+                <i class="fas fa-file-pdf"></i> Descargar PDF
+            </a>
+        </div>
+        
+        <a href="javascript:window.print()" class="download-btn">
+            <i class="fas fa-download"></i> Descargar CV
+        </a>
+        
+        <div class="header">
+            <div class="name-title">
+                <h1>TAIEL AGUIRRE</h1>
+                <div class="title">ESPECIALISTA EN CIBERSEGURIDAD INDUSTRIAL Y AUTOMATIZACIÓN</div>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    Email: taielaguirr@gmail.com
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Ubicación: Bahía Blanca, Argentina
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    Teléfono: [2914476665]
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    LinkedIn: linkedin.com/in/taielaguirre
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    GitHub: github.com/taielaguirre
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-summary">
+            <h2 class="section-title">RESUMEN PROFESIONAL</h2>
+            <p>Especialista certificado en Ciberseguridad Industrial y Automatización con más de [X] años de experiencia en protección de infraestructuras críticas y sistemas de control industrial (ICS/SCADA). Experto en implementación de controles de seguridad OT, evaluación de vulnerabilidades industriales y desarrollo de soluciones de automatización segura según estándares ISA/IEC 62443. Certificado en IA e Industria 4.0 por la Universidad Nacional Guillermo Brown.</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="left-content">
+                <h2 class="section-title">EXPERIENCIA PROFESIONAL</h2>
+                
+                <div class="experience-item">
+                    <div class="job-title">LÍDER DE ÁREA DE INFORMÁTICA | Electroprima S.L.R</div>
+                    <div class="company">Electroprima S.L.R</div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Implementé arquitecturas de seguridad industrial reduciendo incidentes de seguridad en un 80%</li>
+                            <li>Desarrollé y ejecuté políticas de seguridad OT alineadas con ISA/IEC 62443</li>
+                            <li>Gestioné la seguridad de más de 50 dispositivos ICS/SCADA</li>
+                            <li>Realicé más de 20 auditorías de seguridad en sistemas de control industrial</li>
+                            <li>Implementé soluciones de automatización segura para 15 procesos críticos</li>
+                        </ul>
+                        <p><strong>Referencias disponibles a petición</strong></p>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">PROFESOR DE TECNOLOGÍA | Tauro Computación</div>
+                    <div class="company">Tauro Computación</div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Desarrollé programa de capacitación en seguridad de redes industriales</li>
+                            <li>Instruí a más de 100 profesionales en ciberseguridad industrial</li>
+                            <li>Creé material didáctico especializado en protocolos industriales</li>
+                            <li>Implementé laboratorio práctico de seguridad OT</li>
+                        </ul>
+                        <p><strong>Referencias disponibles a petición</strong></p>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">Asistente de Soporte Técnico</div>
+                    <div class="company">TIENDA DE INFORMÁTICA 'MAXHARD PC'</div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Asistencia en diseño web básico.</li>
+                            <li>Apoyo en ensamblaje y mantenimiento de hardware.</li>
+                            <li>Ayuda en soporte técnico a clientes.</li>
+                        </ul>
+                        <p><strong>Referencias disponibles a petición</strong></p>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">Asistente de Capacitación</div>
+                    <div class="company">TAURO COMPUTACIÓN</div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Apoyo en cursos de armado y configuración de PC.</li>
+                            <li>Asistencia en capacitación básica de redes informáticas.</li>
+                        </ul>
+                        <p><strong>Referencias disponibles a petición</strong></p>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">Educación y Formación</h2>
+                
+                <div class="education-item">
+                    <div class="edu-title">Universidad Nacional Guillermo Brown</div>
+                    <div class="institution">Especialización en Inteligencia Artificial e Industria 4.0</div>
+                    <div class="edu-description">
+                        <ul>
+                            <li>Especialización en Seguridad de Sistemas Industriales</li>
+                            <li>Proyecto Final: Implementación de Seguridad en Sistemas ICS/SCADA</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div class="edu-title">Automatización con IA - Industria 4.0</div>
+                    <div class="institution">Formación Especializada</div>
+                    <div class="edu-description">
+                        <ul>
+                            <li>Desarrollo de sistemas de automatización industrial</li>
+                            <li>Integración de IA en procesos productivos</li>
+                            <li>Implementación de soluciones IoT y sensores inteligentes</li>
+                            <li>Optimización de procesos mediante machine learning</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="edu-title">Certificaciones Oficiales en Cloud Security</div>
+                    <div class="institution">Certificaciones Profesionales</div>
+                    <div class="edu-description">
+                        <ul>
+                            <li>Professional Cloud Security Engineer - <strong>Google Cloud</strong></li>
+                            <li>Certificate of Cloud Security Knowledge (CCSK) v.4 - <strong>Cloud Security Alliance</strong></li>
+                            <li>AWS Certified Security – Specialty - <strong>Amazon Web Services</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="edu-title">Formación Especializada en Ciberseguridad (Completada)</div>
+                    <div class="institution">Plataformas especializadas</div>
+                    <div class="edu-description">
+                        <ul>
+                            <li>Google Professional Cloud Security Engineer Certification (Ankit Mistry)</li>
+                            <li>CCSK v5 - Seguridad en la Nube - Cloud Security Curso 2025 (Cyvitrix Learning)</li>
+                            <li>Curso de Hacking Ético y Ciberseguridad para Principiantes (Thiago Araujo)</li>
+                            <li>Introducción a la Auditoría de Ciberseguridad (David Amarante)</li>
+                            <li>Introducción teórica a la Seguridad Informática en la Nube (Alvaro Chirou)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="edu-title">Preparación AWS Security Specialty</div>
+                    <div class="institution">Amazon Web Services</div>
+                    <div class="edu-description">
+                        <ul>
+                            <li>Ultimate AWS Certified Security Specialty [NEW 2025] SCS-C02 (Stephane Maarek)</li>
+                            <li>AWS Certified Security Specialty Practice Exams SCS-C02</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="side-content">
+                <h2 class="section-title">COMPETENCIAS CLAVE</h2>
+                <ul>
+                    <li>Seguridad en Sistemas de Control Industrial (ICS/SCADA Security)</li>
+                    <li>Evaluación de Vulnerabilidades OT (Industrial Vulnerability Assessment)</li>
+                    <li>Automatización Industrial Segura (Secure Industrial Automation)</li>
+                    <li>Protección de Infraestructuras Críticas (Critical Infrastructure Protection)</li>
+                    <li>Seguridad en Redes Industriales (Industrial Network Security)</li>
+                    <li>Programación de PLCs y RTUs (PLC/RTU Programming)</li>
+                    <li>Implementación de Estándares ISA/IEC 62443</li>
+                    <li>Gestión de Incidentes de Seguridad Industrial (Industrial Security Incident Management)</li>
+                </ul>
+                
+                <h2 class="section-title">Habilidades en Desarrollo</h2>
+                
+                <div class="skills-category">
+                    <h3>Seguridad Industrial</h3>
+                    <ul class="skills-list">
+                        <li>ICS/SCADA Security</li>
+                        <li>Industrial Network Security</li>
+                        <li>OT Security Controls</li>
+                        <li>Vulnerability Assessment</li>
+                        <li>Security Information and Event Management (SIEM)</li>
+                    </ul>
+                </div>
+                
+                <div class="skills-category">
+                    <h3>Automatización</h3>
+                    <ul class="skills-list">
+                        <li>PLC Programming (Siemens, Allen-Bradley)</li>
+                        <li>SCADA Systems</li>
+                        <li>Industrial Protocols (Modbus, Profinet, EtherNet/IP)</li>
+                        <li>DCS Systems</li>
+                        <li>Industrial IoT Security</li>
+                    </ul>
+                </div>
+                
+                <div class="skills-category">
+                    <h3>Herramientas y Tecnologías</h3>
+                    <ul class="skills-list">
+                        <li>Python para seguridad</li>
+                        <li>Wireshark</li>
+                        <li>Kali Linux</li>
+                        <li>IDS/IPS industriales</li>
+                        <li>Sistemas de control distribuido</li>
+                    </ul>
+                </div>
+                
+                <div class="skills-section">
+                    <h2 class="section-title">Habilidades para Trabajo Remoto</h2>
+                    
+                    <div class="skill-category">
+                        <h3>Gestión de Proyectos Remotos</h3>
+                        <div class="skill-items">
+                            <span class="skill-item">Jira</span>
+                            <span class="skill-item">Trello</span>
+                            <span class="skill-item">Asana</span>
+                            <span class="skill-item">GitHub Project Management</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Comunicación y Colaboración</h3>
+                        <div class="skill-items">
+                            <span class="skill-item">Slack</span>
+                            <span class="skill-item">Microsoft Teams</span>
+                            <span class="skill-item">Zoom</span>
+                            <span class="skill-item">Discord</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Control de Versiones y DevOps</h3>
+                        <div class="skill-items">
+                            <span class="skill-item">Git</span>
+                            <span class="skill-item">GitHub</span>
+                            <span class="skill-item">GitLab</span>
+                            <span class="skill-item">CI/CD</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Metodologías Ágiles</h3>
+                        <div class="skill-items">
+                            <span class="skill-item">Scrum</span>
+                            <span class="skill-item">Kanban</span>
+                            <span class="skill-item">Sprint Planning</span>
+                            <span class="skill-item">Daily Standups</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="languages">
+                    <h2 class="section-title">IDIOMAS</h2>
+                    
+                    <div class="language-item">
+                        <div class="language-name">
+                            <span>Español</span>
+                            <span class="language-level">Nativo</span>
+                        </div>
+                        <div class="language-bar">
+                            <div class="language-progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="language-item">
+                        <div class="language-name">
+                            <span>Inglés</span>
+                            <span class="language-level">Intermedio</span>
+                        </div>
+                        <div class="language-bar">
+                            <div class="language-progress" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-link">
+                    <a href="https://taielaguirre.github.io/portafolio/" target="_blank">
+                        <i class="fas fa-laptop-code"></i> Ver Portafolio Completo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="cv-footer">
+        <div class="footer-content">
+            <p class="updated-date">Actualizado: Abril 2024</p>
+            <p class="footer-note">Este documento resume mi experiencia profesional y habilidades técnicas. Para servicios de ciberseguridad y desarrollo, consulte mi firma personal NetLoom Solutions.</p>
+            <div class="footer-links">
+                <a href="https://taielaguirre.github.io/portafolio/" target="_blank">Portafolio</a>
+                <a href="https://github.com/taielaguirre" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/taielaguirre" target="_blank">LinkedIn</a>
+                <a href="#netloom-contacto" target="_blank">NetLoom Solutions</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        document.getElementById('download-pdf').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Ocultar los botones de descarga para el PDF
+            const downloadActions = document.querySelector('.download-actions');
+            downloadActions.style.display = 'none';
+            
+            // Configuración del PDF
+            const options = {
+                margin: 10,
+                filename: 'CV-Taiel-Aguirre.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            // Generar el PDF
+            const element = document.body;
+            html2pdf().set(options).from(element).save().then(function() {
+                // Mostrar los botones de nuevo después de generar el PDF
+                downloadActions.style.display = 'flex';
+            });
+        });
+    </script>
+</body>
+</html> 

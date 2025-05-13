@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /lecturas.html
+Allow: /privacy-policy.html
+Allow: /article-*.html
+Allow: /images/
+Allow: /styles.css
+Allow: /scripts.js
+
+# Protección del CV y archivos sensibles
+Disallow: /modern-cv.html
+Disallow: /config.js
+Disallow: /*.json$
+Disallow: /*.pdf$
+Disallow: /*.PNG$
+
+# Indicar sitemap si tienes uno
+# Sitemap: https://tudominio.com/sitemap.xml 

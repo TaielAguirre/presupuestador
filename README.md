@@ -1,157 +1,84 @@
-# Sistema de Gestión de Presupuestos y Materiales
+# Portafolio de Especialista Certificado en Seguridad en la Nube y Desarrollador Full Stack
 
-## 🚀 Descripción
-Sistema profesional para la gestión de presupuestos, materiales y proveedores, con manejo avanzado de monedas y exportación a múltiples formatos. Desarrollado con PHP, JavaScript y tecnologías modernas.
+Un portafolio profesional destacando mis certificaciones oficiales en seguridad en la nube y mis proyectos de desarrollo web.
 
-## ✨ Características Principales
+## Certificaciones Oficiales
 
-### Gestión de Presupuestos
-- Creación y edición de presupuestos con interfaz tipo Excel
-- Manejo automático de conversión de monedas (ARS/USD)
-- Sistema de descuentos y costos adicionales
-- Exportación a PDF y formato Flexxus
-- Historial y versionado de presupuestos
+- **Professional Cloud Security Engineer** - Google Cloud
+- **Certificate of Cloud Security Knowledge v.4** - Cloud Security Alliance
+- **AWS Certified Security – Specialty** - Amazon Web Services
 
-### Gestión de Materiales
-- Catálogo completo de materiales
-- Actualización masiva de precios
-- Historial de cambios de precios
-- Validación de códigos Flexxus
-- Integración con proveedores
+## Características del Portafolio
 
-### Características Técnicas
-- Frontend moderno con Bootstrap 5
-- AG Grid para manejo avanzado de datos
-- Sistema de búsqueda en tiempo real
-- Validaciones frontend y backend
-- API RESTful
-- Manejo de permisos y roles
-- Sistema de notificaciones
+Este portafolio ha sido diseñado para mostrar mis habilidades tanto en seguridad en la nube como en desarrollo full stack, incluyendo:
 
-## 🛠️ Tecnologías Utilizadas
+- Diseño responsivo con enfoque mobile-first
+- Optimización de rendimiento y SEO
+- Experiencia de usuario intuitiva y moderna
+- Sistema avanzado de gestión de proyectos
+- Interfaz administrativa completa
 
-### Frontend
-- HTML5/CSS3
-- JavaScript (ES6+)
-- Bootstrap 5
-- AG Grid Enterprise
-- Select2
-- SweetAlert2
-- AutoComplete.js
+## Sistema de Gestión de Proyectos
 
-### Backend
-- PHP 8.0+
-- MySQL/MariaDB
-- PDO
-- Composer
+El portafolio incluye un sistema completo de gestión de proyectos desarrollado desde cero con las siguientes funcionalidades:
 
-### Herramientas
-- XAMPP
-- Git
-- Visual Studio Code
-- Postman
+### Características Generales
+- Almacenamiento local de proyectos con localStorage
+- Carga dinámica de proyectos en la interfaz
+- Filtrado por categorías
+- Contador de visualizaciones por proyecto
 
-## 📦 Instalación
+### Panel de Administración
+- Autenticación segura con protección contra intentos excesivos de login
+- Vista general de proyectos existentes
+- Capacidad para añadir, editar, ocultar y eliminar proyectos
+- Editor visual con previsualización
 
-1. Clonar el repositorio
-```bash
-git clone https://github.com/tuusuario/presupuestador.git
-```
+### Analíticas y Estadísticas
+- Contadores de visitas por proyecto
+- Visualización de estadísticas mediante gráficos
+- Análisis de uso de tecnologías y categorías
 
-2. Instalar dependencias
-```bash
-composer install
-```
+### Respaldo y Seguridad
+- Exportación e importación de proyectos en formato JSON
+- Historial de respaldos
+- Medidas de seguridad para proteger el acceso
 
-3. Configurar base de datos
-```bash
-# Importar schema.sql
-mysql -u root -p < database/schema.sql
-```
+## Tecnologías Utilizadas
 
-4. Configurar el archivo de entorno
-```bash
-cp .env.example .env
-# Editar .env con tus credenciales
-```
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Almacenamiento**: localStorage, JSON
+- **UI/UX**: Diseño responsivo, animaciones CSS
+- **Seguridad**: Autenticación basada en cliente, protección contra ataques
 
-5. Iniciar servidor local
-```bash
-php -S localhost:8000
-```
+## Áreas de Especialización
 
-## 📸 Capturas de Pantalla
+- **Desarrollo Full Stack**: JavaScript, Python, PHP, React, Node.js
+- **Seguridad en la Nube**: Google Cloud, AWS, Azure
+- **Bases de Datos**: MySQL, MongoDB, PostgreSQL
+- **DevOps & Infraestructura**: Docker, Kubernetes, CI/CD
 
-![Dashboard](docs/images/dashboard.png)
-![Presupuestos](docs/images/presupuestos.png)
-![Materiales](docs/images/materiales.png)
+## Medidas de Seguridad Implementadas
 
-## 🔧 Estructura del Proyecto
+- Almacenamiento seguro de credenciales
+- Protección contra intentos excesivos de login
+- Expiración automática de sesiones
+- URL no predecibles para funciones administrativas
+- Validación de datos en el cliente
 
-```
-presupuestador/
-├── api/                # Endpoints de la API
-├── assets/            # Recursos estáticos
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── includes/          # Clases y funciones PHP
-├── database/         # Esquemas y migraciones
-├── docs/             # Documentación
-└── vendor/           # Dependencias
-```
+## Objetivos Profesionales
 
-## 🚀 Características Destacadas
+- Mostrar mis habilidades como desarrollador full stack y especialista en seguridad en la nube
+- Destacar mis certificaciones oficiales y proyectos más relevantes
+- Establecer una presencia profesional en línea
+- Conectar con posibles clientes y empleadores interesados en mis servicios
 
-### Sistema de Presupuestos
-- Interfaz intuitiva tipo Excel
-- Cálculos automáticos
-- Manejo de múltiples monedas
-- Sistema de plantillas
-- Exportación personalizada
+## Contacto
 
-### Gestión de Materiales
-- Importación masiva
-- Actualización de precios
-- Historial de cambios
-- Validación de códigos
+Para cualquier consulta sobre servicios de desarrollo o seguridad en la nube:
 
-### Integración Flexxus
-- Exportación compatible
-- Validación de códigos
-- Sincronización de datos
+- Email: taiel@netloomsolutions.com
+- LinkedIn: [taielaguirre](https://www.linkedin.com/in/taielaguirre/)
+- Twitter: [@taielaguirre](https://twitter.com/taielaguirre)
 
-## 🔐 Seguridad
-- Autenticación de usuarios
-- Sistema de roles y permisos
-- Validación de datos
-- Protección contra XSS y SQL Injection
-- Logs de actividad
-
-## 📊 Reportes y Estadísticas
-- Dashboard interactivo
-- Gráficos de tendencias
-- Reportes exportables
-- Análisis de datos
-
-## 🌟 Mejoras Futuras
-- [ ] Integración con APIs de cotización
-- [ ] App móvil
-- [ ] Sistema de backups automáticos
-- [ ] Módulo de facturación
-- [ ] Integración con otros ERPs
-
-## 👨‍💻 Autor
-**Braian Taiel Aguirre**
-- LinkedIn: [Braian Taiel Aguirre](https://www.linkedin.com/in/braian-taiel-aguirre-29496623b)
-- Email: braiantaialaguirre@gmail.com
-
-## 📄 Licencia
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para más detalles.
-
-## 🙏 Agradecimientos
-- Bootstrap - Framework CSS
-- AG Grid - Grilla de datos avanzada
-- Select2 - Selector mejorado
-- SweetAlert2 - Notificaciones elegantes
-- AutoComplete.js - Búsqueda en tiempo real
+© 2024 Taiel Aguirre | NetLoom Solutions 

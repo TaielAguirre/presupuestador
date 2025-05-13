@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Técnico - IA e Industria 4.0 | Taiel Aguirre</title>
+    <meta name="description" content="Blog técnico especializado en Inteligencia Artificial, Machine Learning, Automatización Industrial e Industria 4.0">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <!-- Incluir la misma navegación del index -->
+    <nav>
+        <!-- ... copiar navegación del index ... -->
+    </nav>
+
+    <section class="blog-header section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="animate__animated animate__fadeIn">Blog Técnico</h1>
+                <p>Artículos sobre IA, Machine Learning e Industria 4.0</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-content section-padding">
+        <div class="container">
+            <div class="blog-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="ia">Inteligencia Artificial</button>
+                <button class="filter-btn" data-filter="industria">Industria 4.0</button>
+                <button class="filter-btn" data-filter="seguridad">Ciberseguridad</button>
+                <button class="filter-btn" data-filter="desarrollo">Desarrollo</button>
+                <button class="filter-btn" data-filter="redes">Redes</button>
+                <button class="filter-btn" data-filter="cloud">Cloud</button>
+                <button class="filter-btn" data-filter="tutoriales">Tutoriales</button>
+            </div>
+
+            <div class="blog-grid">
+                <!-- Artículos de IA e Industria 4.0 -->
+                <article class="blog-card" data-category="ia tutoriales">
+                    <div class="blog-image">
+                        <img src="images/blog/chatbot-ia.jpg" alt="Desarrollo de Chatbots con IA">
+                        <span class="blog-category">Tutorial IA</span>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Desarrollo de Chatbots Inteligentes con Python y TensorFlow</h2>
+                        <p>Guía paso a paso para crear un chatbot utilizando técnicas de procesamiento de lenguaje natural y aprendizaje profundo.</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 15 min lectura</span>
+                            <span><i class="far fa-calendar"></i> 15 Mar 2024</span>
+                        </div>
+                        <a href="#" class="btn-read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Artículos de Ciberseguridad -->
+                <article class="blog-card" data-category="seguridad cloud">
+                    <div class="blog-image">
+                        <img src="images/blog/cloud-security.jpg" alt="Seguridad en la Nube">
+                        <span class="blog-category">Ciberseguridad</span>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Implementación de Zero Trust en Entornos Cloud</h2>
+                        <p>Estrategias y mejores prácticas para implementar arquitecturas Zero Trust en infraestructuras cloud empresariales.</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 20 min lectura</span>
+                            <span><i class="far fa-calendar"></i> 12 Mar 2024</span>
+                        </div>
+                        <a href="#" class="btn-read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Artículos de Desarrollo -->
+                <article class="blog-card" data-category="desarrollo tutoriales">
+                    <div class="blog-image">
+                        <img src="images/blog/react-node.jpg" alt="Desarrollo Full Stack">
+                        <span class="blog-category">Desarrollo</span>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Arquitectura Full Stack con React y Node.js</h2>
+                        <p>Guía completa para desarrollar aplicaciones web modernas utilizando React en el frontend y Node.js en el backend.</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 25 min lectura</span>
+                            <span><i class="far fa-calendar"></i> 8 Mar 2024</span>
+                        </div>
+                        <a href="#" class="btn-read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Artículos de Redes -->
+                <article class="blog-card" data-category="redes seguridad">
+                    <div class="blog-image">
+                        <img src="images/blog/network-security.jpg" alt="Seguridad en Redes">
+                        <span class="blog-category">Redes</span>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Configuración Segura de Redes Empresariales</h2>
+                        <p>Implementación de políticas de seguridad, VLANs y sistemas de detección de intrusos en redes corporativas.</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 18 min lectura</span>
+                            <span><i class="far fa-calendar"></i> 5 Mar 2024</span>
+                        </div>
+                        <a href="#" class="btn-read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Artículos de Cloud -->
+                <article class="blog-card" data-category="cloud desarrollo">
+                    <div class="blog-image">
+                        <img src="images/blog/aws-deploy.jpg" alt="Despliegue en AWS">
+                        <span class="blog-category">Cloud</span>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Despliegue de Aplicaciones en AWS</h2>
+                        <p>Proceso completo de despliegue de aplicaciones utilizando servicios AWS como EC2, S3 y CloudFront.</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 22 min lectura</span>
+                            <span><i class="far fa-calendar"></i> 3 Mar 2024</span>
+                        </div>
+                        <a href="#" class="btn-read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Artículos de Industria 4.0 -->
+                <article class="blog-card" data-category="industria automatizacion">
+                    <div class="blog-image">
+                        <img src="images/blog/industria40.jpg" alt="Implementación de IoT">
+                        <span class="blog-category">Industria 4.0</span>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Implementación de IoT en Procesos Industriales</h2>
+                        <p>Análisis práctico de la integración de sensores IoT en líneas de producción para optimización y monitoreo en tiempo real.</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 12 min lectura</span>
+                            <span><i class="far fa-calendar"></i> 10 Mar 2024</span>
+                        </div>
+                        <a href="#" class="btn-read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .blog-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-category {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-content h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .blog-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-read-more:hover {
+            gap: 0.8rem;
+            color: var(--primary-light);
+        }
+
+        @media (max-width: 768px) {
+            .blog-header {
+                padding: 4rem 1rem;
+            }
+
+            .section-header h1 {
+                font-size: 2rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .blog-filters {
+                padding: 0 1rem;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                flex: 0 0 calc(50% - 0.5rem);
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .blog-card {
+                margin-bottom: 1rem;
+            }
+
+            .blog-image {
+                height: 180px;
+            }
+
+            .blog-content {
+                padding: 1.5rem;
+            }
+
+            .blog-content h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .blog-content p {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+            }
+
+            .blog-meta {
+                flex-wrap: wrap;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .blog-meta span {
+                font-size: 0.85rem;
+            }
+
+            .blog-category {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .btn-read-more {
+                width: 100%;
+                justify-content: center;
+                padding: 0.8rem;
+                background: var(--primary);
+                color: white;
+                border-radius: var(--radius-md);
+                margin-top: 1rem;
+            }
+
+            .btn-read-more:hover {
+                background: var(--primary-light);
+                color: white;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-btn {
+                flex: 0 0 100%;
+            }
+
+            .blog-content h2 {
+                font-size: 1.1rem;
+            }
+
+            .blog-image {
+                height: 160px;
+            }
+
+            .blog-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                padding: 1rem;
+            }
+
+            .nav-links a {
+                padding: 0.8rem;
+                width: 100%;
+                text-align: center;
+                border-radius: var(--radius-md);
+            }
+
+            .nav-cta {
+                margin-top: 1rem;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-card {
+                transition: transform 0.2s ease;
+            }
+
+            .blog-card:active {
+                transform: scale(0.98);
+            }
+
+            .filter-btn {
+                transition: all 0.2s ease;
+            }
+
+            .filter-btn:active {
+                transform: scale(0.95);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-card {
+                will-change: transform;
+                backface-visibility: hidden;
+            }
+
+            .blog-image img {
+                will-change: transform;
+            }
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+            gap: clamp(1rem, 3vw, 2rem);
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: clamp(1rem, 3vw, 2rem);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: clamp(1rem, 3vw, 2rem);
+        }
+
+        :root {
+            --fluid-min-width: 320;
+            --fluid-max-width: 1200;
+            --fluid-min-size: 14;
+            --fluid-max-size: 18;
+            --fluid-min-scale: 1.2;
+            --fluid-max-scale: 1.333;
+        }
+
+        @media screen and (min-width: 320px) {
+            :root {
+                --fluid-size: calc(var(--fluid-min-size) * 1px + (var(--fluid-max-size) - var(--fluid-min-size)) * ((100vw - (var(--fluid-min-width) * 1px)) / (var(--fluid-max-width) - var(--fluid-min-width))));
+            }
+
+            body {
+                font-size: var(--fluid-size);
+            }
+        }
+    </style>
+
+    <!-- Incluir el mismo footer del index -->
+    <footer>
+        <!-- ... copiar footer del index ... -->
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Filtrado de artículos
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+
+                    // Actualizar botones activos
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Filtrar artículos
+                    blogCards.forEach(card => {
+                        const categories = card.getAttribute('data-category').split(' ');
+                        if (filter === 'all' || categories.includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

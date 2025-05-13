@@ -1,0 +1,71 @@
+{
+    "tech": {
+        "development": [
+            "python.svg",
+            "javascript.svg",
+            "react.svg",
+            "node.svg"
+        ],
+        "cloud_devops": [
+            "aws.svg",
+            "docker.svg",
+            "kubernetes.svg",
+            "terraform.svg"
+        ],
+        "security": [
+            "vault.svg",
+            "wazuh.svg",
+            "cloudflare.svg",
+            "snyk.svg"
+        ]
+    },
+    "readings": {
+        "categories": [
+            "category-development.jpg",
+            "category-cloud-security.jpg",
+            "category-devops.jpg"
+        ],
+        "articles": {
+            "zero-trust": {
+                "main": "zero-trust.jpg",
+                "sections": [
+                    "zero-trust-auth.jpg",
+                    "zero-trust-network.jpg",
+                    "zero-trust-monitoring.jpg"
+                ]
+            },
+            "trading-algorithms": {
+                "main": "trading-algorithms.jpg",
+                "sections": [
+                    "trading-analysis.jpg",
+                    "trading-risk.jpg",
+                    "trading-metrics.jpg"
+                ]
+            },
+            "cloud-security": {
+                "main": "cloud-security.jpg",
+                "sections": [
+                    "cloud-iam.jpg",
+                    "cloud-data.jpg",
+                    "cloud-best-practices.jpg"
+                ]
+            },
+            "microservices": {
+                "main": "microservices.jpg",
+                "sections": [
+                    "microservices-communication.jpg",
+                    "microservices-data.jpg",
+                    "microservices-deployment.jpg"
+                ]
+            },
+            "ci-cd": {
+                "main": "ci-cd.jpg",
+                "sections": [
+                    "ci-cd-workflow.jpg",
+                    "ci-cd-testing.jpg",
+                    "ci-cd-deployment.jpg"
+                ]
+            }
+        }
+    }
+} 

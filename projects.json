@@ -1,0 +1,89 @@
+{
+  "projects": [
+    {
+      "id": "secure-webapp",
+      "title": "Aplicación Web Segura",
+      "category": ["development", "security"],
+      "featured": true,
+      "mainImage": "images/projects/secure-webapp/main.jpg",
+      "description": "Aplicación web desarrollada con enfoque en seguridad, implementando las recomendaciones de OWASP Top 10. Incluye validación de entrada, autenticación segura y protección contra ataques comunes.",
+      "technologies": ["React", "Node.js", "Express", "MongoDB", "JWT"],
+      "githubUrl": "https://github.com/taielaguirre/secure-webapp",
+      "liveUrl": "https://secure-webapp-demo.netloomsolutions.com",
+      "images": [
+        "images/projects/secure-webapp/screenshot1.jpg",
+        "images/projects/secure-webapp/screenshot2.jpg",
+        "images/projects/secure-webapp/screenshot3.jpg"
+      ],
+      "details": "Esta aplicación demuestra la implementación práctica de seguridad en aplicaciones web modernas. Características: sistema de autenticación con JWT, protección contra XSS, validación exhaustiva de entrada, registro seguro de eventos, y monitoreo de actividad sospechosa."
+    },
+    {
+      "id": "inventory-system",
+      "title": "Sistema de Inventario",
+      "category": ["development", "fullstack"],
+      "featured": true,
+      "mainImage": "images/projects/inventory/main.jpg",
+      "description": "Sistema completo de gestión de inventario con dashboard de análisis, reportes en tiempo real y gestión de usuarios. Implementado con arquitectura moderna y responsive.",
+      "technologies": ["Vue.js", "Laravel", "MySQL", "Docker"],
+      "githubUrl": "https://github.com/taielaguirre/inventory-system",
+      "liveUrl": "https://inventory-demo.netloomsolutions.com",
+      "images": [
+        "images/projects/inventory/dashboard.jpg",
+        "images/projects/inventory/inventory-list.jpg",
+        "images/projects/inventory/reports.jpg"
+      ],
+      "details": "Sistema completo para gestión de inventarios empresariales. Incluye gestión de productos, proveedores, órdenes de compra, dashboard analítico, sistema de alertas para stock bajo y generación de reportes automáticos."
+    },
+    {
+      "id": "ecommerce-platform",
+      "title": "Plataforma E-commerce",
+      "category": ["development", "fullstack"],
+      "featured": false,
+      "mainImage": "images/projects/ecommerce/main.jpg",
+      "description": "Plataforma e-commerce con carrito de compras, pasarela de pagos, gestión de productos y panel administrativo.",
+      "technologies": ["React", "Node.js", "MongoDB", "Stripe", "AWS S3"],
+      "githubUrl": "https://github.com/taielaguirre/ecommerce-platform",
+      "liveUrl": "https://ecommerce-demo.netloomsolutions.com",
+      "images": [
+        "images/projects/ecommerce/homepage.jpg",
+        "images/projects/ecommerce/product-page.jpg",
+        "images/projects/ecommerce/checkout.jpg"
+      ],
+      "details": "Plataforma e-commerce moderna con enfoque en usabilidad y seguridad. Incluye gestión de productos con imágenes, carrito de compras, pasarela segura de pagos con Stripe, sistema de usuarios y roles, y panel administrativo para gestión completa."
+    },
+    {
+      "id": "task-manager",
+      "title": "Gestor de Tareas Colaborativo",
+      "category": ["development", "frontend"],
+      "featured": false,
+      "mainImage": "images/projects/taskmanager/main.jpg",
+      "description": "Aplicación para gestión de tareas en equipos con asignación, seguimiento de tiempo y estadísticas de productividad.",
+      "technologies": ["JavaScript", "Vue.js", "Firebase", "Charts.js"],
+      "githubUrl": "https://github.com/taielaguirre/task-manager",
+      "liveUrl": "https://task-manager-demo.netloomsolutions.com",
+      "images": [
+        "images/projects/taskmanager/dashboard.jpg",
+        "images/projects/taskmanager/task-detail.jpg",
+        "images/projects/taskmanager/statistics.jpg"
+      ],
+      "details": "Sistema colaborativo para gestión de tareas diseñado para equipos remotos. Incluye asignación de tareas, seguimiento de tiempo, comentarios en tiempo real, estadísticas de productividad por usuario y equipo, y notificaciones."
+    },
+    {
+      "id": "security-dashboard",
+      "title": "Dashboard de Seguridad",
+      "category": ["security", "development"],
+      "featured": true,
+      "mainImage": "images/projects/securitydashboard/main.jpg",
+      "description": "Dashboard centralizado para visualización y análisis de eventos de seguridad. Integra múltiples fuentes de datos para ofrecer una visión completa de la postura de seguridad.",
+      "technologies": ["Python", "Django", "React", "D3.js", "ElasticSearch"],
+      "githubUrl": "https://github.com/taielaguirre/security-dashboard",
+      "liveUrl": "https://security-dashboard-demo.netloomsolutions.com",
+      "images": [
+        "images/projects/securitydashboard/overview.jpg",
+        "images/projects/securitydashboard/alerts.jpg",
+        "images/projects/securitydashboard/logs.jpg"
+      ],
+      "details": "Dashboard de seguridad que integra logs de diferentes fuentes, visualiza eventos en tiempo real, genera alertas automáticas, y facilita el análisis de tendencias de seguridad. Ideal para equipos de seguridad que necesitan una visión unificada de su infraestructura."
+    }
+  ]
+} 

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | NetLoom Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilos específicos del panel admin */
+        .admin-section {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .admin-header {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .admin-title {
+            font-size: 1.8rem;
+            color: #333;
+        }
+        
+        .admin-navbar {
+            background-color: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .admin-nav-brand img {
+            width: 40px;
+            height: auto;
+        }
+        
+        .admin-nav-brand h1 {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        
+        .admin-nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .admin-nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .admin-nav-links a:hover {
+            color: #2a7de1;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 2rem;
+            margin-top: -1rem;
+        }
+        
+        .admin-tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .admin-tab.active {
+            color: #2a7de1;
+            border-bottom-color: #2a7de1;
+        }
+        
+        .admin-tab-content {
+            display: none;
+        }
+        
+        .admin-tab-content.active {
+            display: block;
+        }
+        
+        /* Estilos de las tarjetas de proyectos */
+        .projects-grid-admin {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card.featured {
+            border-left: 3px solid #ff7700;
+        }
+        
+        .project-header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .project-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
+        }
+        
+        .project-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .project-actions button {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+        
+        .project-actions button:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .btn-edit:hover {
+            color: #2a7de1;
+        }
+        
+        .btn-visibility:hover {
+            color: #ffc107;
+        }
+        
+        .btn-delete:hover {
+            color: #dc3545;
+        }
+        
+        .project-image {
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            padding: 1rem;
+        }
+        
+        .project-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .category-tag {
+            background-color: #f0f0f0;
+            color: #555;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .tech-tag {
+            background-color: #e6f2ff;
+            color: #2a7de1;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+        }
+        
+        .project-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        .stats-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        /* Stats cards */
+        .projects-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stats-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+        }
+        
+        .stats-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stats-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Charts */
+        .chart-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+            margin-bottom: 2rem;
+        }
+        
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .chart-title {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .chart-bar-item {
+            margin-bottom: 1rem;
+        }
+        
+        .chart-bar-label {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0.3rem;
+        }
+        
+        .chart-bar-container {
+            height: 18px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-bar {
+            background-color: #2a7de1;
+            height: 100%;
+            border-radius: 20px;
+        }
+        
+        .chart-bar-value {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            line-height: 18px;
+            font-size: 0.75rem;
+            color: white;
+        }
+        
+        /* Export/Import Controls */
+        .export-controls {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .import-input {
+            display: none;
+        }
+        
+        /* Notifications */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            background-color: #2a7de1;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .notification.success {
+            background-color: #28a745;
+        }
+        
+        .notification.error {
+            background-color: #dc3545;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 1.5rem;
+            }
+            
+            .projects-grid-admin {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-nav-links {
+                display: none;
+            }
+            
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="authError" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #f8f9fa; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center;">
+        <img src="images/netloom-logo.png" alt="NetLoom Logo" style="width: 120px; margin-bottom: 2rem;">
+        <h2 style="color: #dc3545; margin-bottom: 1rem;">Acceso Restringido</h2>
+        <p style="max-width: 400px; margin-bottom: 2rem; color: #555;">Debes iniciar sesión como administrador para acceder a esta página.</p>
+        <a href="admin-login.html" style="display: inline-block; padding: 0.8rem 1.5rem; background-color: #2a7de1; color: white; text-decoration: none; border-radius: 5px; font-weight: 500;">Iniciar Sesión</a>
+        <a href="index.html" style="display: block; margin-top: 1.5rem; color: #666; text-decoration: none;">Volver al Portafolio</a>
+    </div>
+
+    <nav class="admin-navbar">
+        <div class="admin-nav-container">
+            <div class="admin-nav-brand">
+                <img src="images/netloom-logo.png" alt="NetLoom Logo">
+                <h1>Panel de Admin</h1>
+            </div>
+            <div class="admin-nav-links">
+                <a href="index.html">
+                    <i class="fas fa-globe"></i> Ver Sitio
+                </a>
+                <a href="proyecto-admin-xyz.html">
+                    <i class="fas fa-plus-circle"></i> Nuevo Proyecto
+                </a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="logoutBtn" class="btn-outline" style="margin-left: 1rem; padding: 0.5rem 1rem;">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="admin-section">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1 class="admin-title">Panel de Administración</h1>
+                <div>
+                    <a href="proyecto-admin-xyz.html" class="btn-primary">
+                        <i class="fas fa-plus-circle"></i> Nuevo Proyecto
+                    </a>
+                </div>
+            </div>
+
+            <div class="admin-tabs">
+                <div class="admin-tab active" data-tab="projects">Proyectos</div>
+                <div class="admin-tab" data-tab="analytics">Estadísticas</div>
+                <div class="admin-tab" data-tab="backup">Respaldo</div>
+            </div>
+
+            <!-- Tab de Proyectos -->
+            <div class="admin-tab-content active" id="projects-tab">
+                <div id="projects-list" class="projects-grid-admin">
+                    <!-- Los proyectos se cargarán dinámicamente -->
+                    <div class="loading">Cargando proyectos...</div>
+                </div>
+            </div>
+
+            <!-- Tab de Estadísticas -->
+            <div class="admin-tab-content" id="analytics-tab">
+                <div id="projects-stats" class="projects-stats">
+                    <!-- Estadísticas se cargarán dinámicamente -->
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <div id="category-chart">
+                            <!-- Gráfico de categorías se cargará dinámicamente -->
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div id="tech-chart">
+                            <!-- Gráfico de tecnologías se cargará dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab de Respaldo -->
+            <div class="admin-tab-content" id="backup-tab">
+                <div class="export-controls">
+                    <button id="exportBtn" class="btn-primary">
+                        <i class="fas fa-download"></i> Exportar Proyectos
+                    </button>
+                    
+                    <label for="importFile" class="btn-secondary">
+                        <i class="fas fa-upload"></i> Importar Proyectos
+                    </label>
+                    <input type="file" id="importFile" class="import-input" accept=".json">
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-title">Respaldo y Recuperación</div>
+                    <p>Realiza una copia de seguridad de tus proyectos exportándolos a un archivo JSON. Este archivo puede ser importado más tarde para restaurar tus proyectos.</p>
+                    <p>Es recomendable realizar copias de seguridad periódicamente, especialmente después de añadir varios proyectos nuevos.</p>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Último respaldo</h3>
+                        <div id="last-backup">Nunca</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="admin-dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar autenticación
+            function checkAuth() {
+                const isLoggedIn = localStorage.getItem('admin_logged_in');
+                const sessionExpires = localStorage.getItem('admin_session_expires');
+                
+                // Verificar si está logueado y la sesión no ha expirado
+                if (isLoggedIn !== 'true' || !sessionExpires || parseInt(sessionExpires) < Date.now()) {
+                    // Mostrar error de autenticación
+                    document.getElementById('authError').style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                    return false;
+                }
+                
+                // Ocultar error si está autenticado
+                document.getElementById('authError').style.display = 'none';
+                document.body.style.overflow = '';
+                return true;
+            }
+            
+            // Verificar autenticación al cargar la página
+            if (!checkAuth()) {
+                return; // Detener la ejecución si no está autenticado
+            }
+            
+            // Función de cierre de sesión
+            function logout() {
+                localStorage.removeItem('admin_logged_in');
+                localStorage.removeItem('admin_session_expires');
+                window.location.href = 'admin-login.html';
+            }
+            
+            // Asignar evento de cierre de sesión
+            document.getElementById('logoutBtn').addEventListener('click', logout);
+            
+            // Manejo de pestañas
+            const tabs = document.querySelectorAll('.admin-tab');
+            const tabContents = document.querySelectorAll('.admin-tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.dataset.tab;
+                    
+                    // Actualizar clases activas
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    tab.classList.add('active');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                    
+                    // Inicializar contenido según la pestaña
+                    if (tabId === 'projects') {
+                        ProjectManager.renderProjectsList(ProjectManager.loadProjects());
+                    } else if (tabId === 'analytics') {
+                        ProjectAnalytics.init();
+                    } else if (tabId === 'backup') {
+                        updateLastBackupInfo();
+                    }
+                });
+            });
+            
+            // Inicializar proyectos al cargar
+            ProjectManager.renderProjectsList(ProjectManager.loadProjects());
+            
+            // Funcionalidad de exportar/importar
+            document.getElementById('exportBtn').addEventListener('click', function() {
+                ProjectExport.exportProjects();
+                updateLastBackupInfo();
+            });
+            
+            document.getElementById('importFile').addEventListener('change', function() {
+                ProjectExport.importProjects(this);
+            });
+            
+            // Actualizar info del último respaldo
+            function updateLastBackupInfo() {
+                const lastBackup = localStorage.getItem('last_backup_date');
+                const backupInfo = document.getElementById('last-backup');
+                
+                if (lastBackup) {
+                    const date = new Date(parseInt(lastBackup));
+                    backupInfo.textContent = date.toLocaleString();
+                } else {
+                    backupInfo.textContent = 'No hay respaldos recientes';
+                }
+            }
+            
+            // Guardar fecha de exportación
+            const originalExportProjects = ProjectExport.exportProjects;
+            ProjectExport.exportProjects = function() {
+                originalExportProjects.apply(this, arguments);
+                localStorage.setItem('last_backup_date', Date.now());
+                updateLastBackupInfo();
+            };
+            
+            // Cambiar tema
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-theme');
+                const icon = themeToggle.querySelector('i');
+                if (document.body.classList.contains('dark-theme')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+                
+                // Guardar preferencia en localStorage
+                const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+                localStorage.setItem('portfolio-theme', theme);
+            });
+            
+            // Cargar tema guardado
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                const icon = themeToggle.querySelector('i');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        });
+    </script>
+</body>
+</html> 

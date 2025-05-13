@@ -1,0 +1,329 @@
+<article class="full-article">
+    <header class="article-header">
+        <h2>Algoritmos de Trading con Python: Una Guía Completa</h2>
+        <div class="article-meta">
+            <span><i class="far fa-clock"></i> 45 min lectura</span>
+            <span><i class="fas fa-book-reader"></i> Nivel: Avanzado</span>
+            <span><i class="fas fa-tag"></i> Trading & ML</span>
+        </div>
+    </header>
+
+    <section class="article-section">
+        <h3>Introducción al Trading Algorítmico</h3>
+        <p>
+            El trading algorítmico representa la intersección entre finanzas y tecnología, permitiendo la automatización 
+            de estrategias de trading basadas en reglas predefinidas y análisis de datos. En esta guía exhaustiva, 
+            exploraremos cómo construir un sistema de trading algorítmico robusto utilizando Python.
+        </p>
+    </section>
+
+    <section class="article-section">
+        <h3>1. Fundamentos y Arquitectura del Sistema</h3>
+        <p>
+            Un sistema de trading algorítmico efectivo se compone de varios módulos interconectados:
+        </p>
+        <ul class="article-list">
+            <li>Recolección y procesamiento de datos en tiempo real</li>
+            <li>Análisis técnico y generación de señales</li>
+            <li>Sistema de gestión de riesgos</li>
+            <li>Motor de ejecución de órdenes</li>
+            <li>Módulo de backtesting y optimización</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-python">
+from dataclasses import dataclass
+from typing import List, Dict, Optional
+import pandas as pd
+import numpy as np
+from datetime import datetime
+
+@dataclass
+class TradingSystem:
+    exchange_api: ExchangeAPI
+    risk_manager: RiskManager
+    signal_generator: SignalGenerator
+    order_executor: OrderExecutor
+    
+    def __post_init__(self):
+        self.portfolio = Portfolio()
+        self.data_store = DataStore()
+        self.performance_metrics = PerformanceTracker()
+    
+    async def run(self):
+        while True:
+            try:
+                # 1. Obtener datos actualizados
+                market_data = await self.exchange_api.get_market_data()
+                self.data_store.update(market_data)
+                
+                # 2. Generar señales
+                signals = self.signal_generator.generate_signals(
+                    self.data_store.get_latest_data()
+                )
+                
+                # 3. Evaluar riesgo
+                risk_approved = self.risk_manager.evaluate_signals(
+                    signals, self.portfolio
+                )
+                
+                # 4. Ejecutar órdenes si el riesgo es aceptable
+                if risk_approved:
+                    await self.order_executor.execute_signals(signals)
+                
+                # 5. Actualizar métricas
+                self.performance_metrics.update(self.portfolio)
+                
+            except Exception as e:
+                logger.error(f"Error en ciclo de trading: {e}")
+                await self.handle_error(e)
+            </code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>2. Análisis Técnico Avanzado</h3>
+        <p>
+            El análisis técnico es fundamental para la generación de señales de trading. Implementaremos 
+            indicadores avanzados y sus combinaciones:
+        </p>
+        <div class="code-block">
+            <pre><code class="language-python">
+class TechnicalAnalyzer:
+    def __init__(self):
+        self.indicators = {}
+    
+    def calculate_all(self, data: pd.DataFrame) -> Dict[str, pd.Series]:
+        return {
+            'rsi': self._calculate_rsi(data, period=14),
+            'macd': self._calculate_macd(data),
+            'bollinger': self._calculate_bollinger_bands(data),
+            'volume_profile': self._calculate_volume_profile(data)
+        }
+    
+    def _calculate_rsi(self, data: pd.DataFrame, period: int = 14) -> pd.Series:
+        delta = data['close'].diff()
+        gain = (delta.where(delta > 0, 0)).rolling(window=period).mean()
+        loss = (-delta.where(delta < 0, 0)).rolling(window=period).mean()
+        rs = gain / loss
+        return 100 - (100 / (1 + rs))
+    
+    def _calculate_macd(self, data: pd.DataFrame) -> pd.Series:
+        exp1 = data['close'].ewm(span=12, adjust=False).mean()
+        exp2 = data['close'].ewm(span=26, adjust=False).mean()
+        macd = exp1 - exp2
+        signal = macd.ewm(span=9, adjust=False).mean()
+        return pd.Series({
+            'macd': macd,
+            'signal': signal,
+            'histogram': macd - signal
+        })
+    
+    def _calculate_bollinger_bands(
+        self, 
+        data: pd.DataFrame, 
+        period: int = 20,
+        std_dev: float = 2.0
+    ) -> Dict[str, pd.Series]:
+        typical_price = (data['high'] + data['low'] + data['close']) / 3
+        middle_band = typical_price.rolling(window=period).mean()
+        std = typical_price.rolling(window=period).std()
+        
+        return {
+            'upper': middle_band + (std_dev * std),
+            'middle': middle_band,
+            'lower': middle_band - (std_dev * std)
+        }
+            </code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>3. Machine Learning en Trading</h3>
+        <p>
+            La integración de modelos de machine learning puede mejorar significativamente la precisión 
+            de nuestras predicciones. Implementaremos un modelo ensemble que combine diferentes algoritmos:
+        </p>
+        <div class="code-block">
+            <pre><code class="language-python">
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.svm import SVC
+from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import TimeSeriesSplit
+
+class MLEnsemble:
+    def __init__(self):
+        self.models = {
+            'rf': RandomForestClassifier(
+                n_estimators=100,
+                max_depth=5,
+                random_state=42
+            ),
+            'gb': GradientBoostingClassifier(
+                n_estimators=100,
+                learning_rate=0.1,
+                random_state=42
+            ),
+            'svm': SVC(
+                kernel='rbf',
+                probability=True,
+                random_state=42
+            ),
+            'nn': MLPClassifier(
+                hidden_layer_sizes=(100, 50),
+                activation='relu',
+                random_state=42
+            )
+        }
+        self.scaler = StandardScaler()
+        
+    def prepare_features(self, data: pd.DataFrame) -> np.ndarray:
+        features = []
+        
+        # Características técnicas
+        technical = TechnicalAnalyzer()
+        indicators = technical.calculate_all(data)
+        
+        # Características de precio
+        price_features = self._calculate_price_features(data)
+        
+        # Características de volumen
+        volume_features = self._calculate_volume_features(data)
+        
+        # Características de volatilidad
+        volatility_features = self._calculate_volatility_features(data)
+        
+        return np.hstack([
+            indicators,
+            price_features,
+            volume_features,
+            volatility_features
+        ])
+            </code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>4. Gestión de Riesgos y Optimización de Cartera</h3>
+        <p>
+            La gestión de riesgos es crucial para el éxito a largo plazo. Implementaremos un sistema 
+            completo de gestión de riesgos que incluye:
+        </p>
+        <ul class="article-list">
+            <li>Position Sizing dinámico basado en volatilidad</li>
+            <li>Stop Loss adaptativo</li>
+            <li>Gestión de drawdown máximo</li>
+            <li>Diversificación óptima de cartera</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-python">
+class RiskManager:
+    def __init__(
+        self,
+        max_position_size: float = 0.02,  # 2% del capital
+        max_drawdown: float = 0.15,       # 15% drawdown máximo
+        risk_free_rate: float = 0.02      # 2% tasa libre de riesgo
+    ):
+        self.max_position_size = max_position_size
+        self.max_drawdown = max_drawdown
+        self.risk_free_rate = risk_free_rate
+        
+    def calculate_position_size(
+        self,
+        portfolio_value: float,
+        volatility: float,
+        correlation: float
+    ) -> float:
+        # Tamaño de posición basado en volatilidad
+        vol_adjusted_size = self.max_position_size / volatility
+        
+        # Ajuste por correlación con la cartera
+        correlation_adjustment = np.sqrt(1 - correlation**2)
+        
+        return min(
+            vol_adjusted_size * correlation_adjustment,
+            self.max_position_size
+        ) * portfolio_value
+            </code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>5. Backtesting y Evaluación de Estrategias</h3>
+        <p>
+            El backtesting riguroso es esencial para validar nuestras estrategias. Implementaremos un 
+            sistema de backtesting que considere:
+        </p>
+        <ul class="article-list">
+            <li>Costos de transacción y slippage</li>
+            <li>Múltiples timeframes</li>
+            <li>Walk-forward analysis</li>
+            <li>Monte Carlo simulations</li>
+        </ul>
+        <div class="code-block">
+            <pre><code class="language-python">
+class Backtester:
+    def __init__(
+        self,
+        strategy: TradingStrategy,
+        data: pd.DataFrame,
+        initial_capital: float = 100000,
+        transaction_costs: float = 0.001  # 0.1% por operación
+    ):
+        self.strategy = strategy
+        self.data = data
+        self.initial_capital = initial_capital
+        self.transaction_costs = transaction_costs
+        
+    def run(self) -> Dict[str, pd.Series]:
+        portfolio_value = self.initial_capital
+        positions = pd.Series(index=self.data.index, dtype=float)
+        returns = pd.Series(index=self.data.index, dtype=float)
+        
+        for timestamp in self.data.index[:-1]:
+            # Generar señal
+            signal = self.strategy.generate_signal(
+                self.data.loc[:timestamp]
+            )
+            
+            # Calcular retorno
+            if signal != 0:  # Si hay una posición
+                price_change = (
+                    self.data.loc[timestamp:timestamp+1, 'close'].pct_change()
+                )
+                trade_return = price_change * signal
+                
+                # Aplicar costos de transacción
+                if positions[timestamp-1] != signal:  # Si hay un cambio de posición
+                    trade_return -= self.transaction_costs
+                
+                portfolio_value *= (1 + trade_return)
+                returns[timestamp] = trade_return
+                positions[timestamp] = signal
+        
+        return {
+            'positions': positions,
+            'returns': returns,
+            'equity_curve': self.initial_capital * (1 + returns).cumprod()
+        }
+            </code></pre>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <h3>Conclusiones y Mejores Prácticas</h3>
+        <p>
+            El trading algorítmico exitoso requiere una combinación de:
+        </p>
+        <ul class="article-list">
+            <li>Código robusto y bien probado</li>
+            <li>Gestión de riesgos rigurosa</li>
+            <li>Validación exhaustiva de estrategias</li>
+            <li>Monitoreo continuo y ajustes</li>
+        </ul>
+        <p>
+            Recuerda que ningún sistema es perfecto y la clave está en la mejora continua y la 
+            adaptación a las condiciones cambiantes del mercado.
+        </p>
+    </section>
+</article> 

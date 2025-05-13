@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Derechos GDPR | NetLoom Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">
+            <img src="images/netloom-logo.png" alt="NetLoom Logo" class="nav-logo">
+            <h1>NetLoom</h1>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="index.html#proyectos">Proyectos</a>
+            <a href="lecturas.html">Recursos</a>
+            <a href="index.html#contacto">Contacto</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Solicitud de Derechos GDPR</h2>
+                <p>Gestione sus datos personales según el Reglamento General de Protección de Datos</p>
+            </div>
+            
+            <div class="gdpr-content">
+                <div class="gdpr-info">
+                    <h3>Sus Derechos de Protección de Datos</h3>
+                    <p>De acuerdo con el Reglamento General de Protección de Datos (GDPR), usted tiene los siguientes derechos:</p>
+                    
+                    <ul class="gdpr-rights-list">
+                        <li><strong>Derecho de acceso:</strong> Puede solicitar una copia de sus datos personales.</li>
+                        <li><strong>Derecho de rectificación:</strong> Puede corregir datos inexactos o incompletos.</li>
+                        <li><strong>Derecho de supresión:</strong> Puede solicitar la eliminación de sus datos personales.</li>
+                        <li><strong>Derecho a la limitación del tratamiento:</strong> Puede solicitar la restricción del procesamiento de sus datos.</li>
+                        <li><strong>Derecho a la portabilidad:</strong> Puede solicitar la transferencia de sus datos a otro controlador.</li>
+                        <li><strong>Derecho de oposición:</strong> Puede oponerse al procesamiento de sus datos personales.</li>
+                        <li><strong>Derecho a retirar el consentimiento:</strong> Puede retirar su consentimiento en cualquier momento.</li>
+                    </ul>
+                    
+                    <p>Complete el formulario a continuación para enviar su solicitud relacionada con cualquiera de estos derechos.</p>
+                </div>
+                
+                <div class="gdpr-form">
+                    <form id="gdprForm">
+                        <div class="form-group">
+                            <label for="full_name">Nombre completo</label>
+                            <input type="text" id="full_name" name="full_name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="request_type">Tipo de solicitud</label>
+                            <select id="request_type" name="request_type" required>
+                                <option value="" disabled selected>Seleccione un tipo de solicitud</option>
+                                <option value="access">Solicitud de acceso a datos</option>
+                                <option value="rectification">Rectificación de datos</option>
+                                <option value="erasure">Eliminación de datos</option>
+                                <option value="restriction">Limitación del tratamiento</option>
+                                <option value="portability">Portabilidad de datos</option>
+                                <option value="objection">Oposición al tratamiento</option>
+                                <option value="withdraw">Retirada de consentimiento</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="request_details">Detalles de la solicitud</label>
+                            <textarea id="request_details" name="request_details" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="verification">Verificación de identidad</label>
+                            <p class="form-help">Para proteger sus datos, necesitamos verificar su identidad. Por favor, indique cómo prefiere que le contactemos para verificar su identidad.</p>
+                            <select id="verification" name="verification" required>
+                                <option value="" disabled selected>Método de verificación preferido</option>
+                                <option value="email">Correo electrónico</option>
+                                <option value="document">Documentación de identidad (se solicitará después)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="gdpr_consent" name="gdpr_consent" required>
+                            <label for="gdpr_consent">Entiendo que esta solicitud será procesada de acuerdo con la <a href="privacy-policy.html">Política de Privacidad</a> y que mis datos serán usados solo para procesar esta solicitud.</label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Enviar solicitud</button>
+                        <div id="gdpr-form-status" class="form-status"></div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="gdpr-notes">
+                <h3>Información adicional</h3>
+                <p>Una vez recibida su solicitud, responderemos en un plazo máximo de 30 días. En caso de que su solicitud sea compleja, este plazo puede extenderse hasta 90 días, en cuyo caso le informaremos de la prórroga.</p>
+                <p>Para cualquier consulta relacionada con su solicitud o con la protección de datos, puede contactarnos directamente en: <a href="mailto:privacy@netloomsolutions.com">privacy@netloomsolutions.com</a></p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Taiel Aguirre</h3>
+                    <p>Especialista en Ciberseguridad & Desarrollo</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="index.html#proyectos">Proyectos</a></li>
+                        <li><a href="modern-cv.html">CV</a></li>
+                        <li><a href="privacy-policy.html">Política de Privacidad</a></li>
+                        <li><a href="gdpr-request.html">Solicitud GDPR</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p>contacto@netloomsolutions.com</p>
+                    <div class="social-links">
+                        <a href="https://github.com/username" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/taielaguirre" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 NetLoom Solutions. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        document.getElementById('gdprForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const statusElement = document.getElementById('gdpr-form-status');
+            
+            // Aquí se implementaría la lógica de envío real
+            // Para este ejemplo, solo mostraremos un mensaje de confirmación
+            
+            statusElement.innerHTML = '<div class="success-message">Su solicitud ha sido recibida. Le responderemos en un plazo máximo de 30 días. Gracias por su paciencia.</div>';
+            this.reset();
+        });
+    </script>
+</body>
+</html> 
